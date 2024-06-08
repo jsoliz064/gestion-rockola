@@ -8,6 +8,7 @@ use App\Http\Controllers\EstudianteController;
 use App\Http\Controllers\ProduccionController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProductoOfertaController;
+use App\Http\Controllers\RockolaController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\SucursalController;
 use App\Http\Controllers\userController;
@@ -56,11 +57,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('/', [VideoController::class, 'index'])->name('videos.index');
     });
 
-    Route::group(['prefix' => 'ofertas'], function () {
-        Route::get('/', [ProductoOfertaController::class, 'index'])->name('ofertas.index');
-    });
+});
 
-    Route::group(['prefix' => 'bot'], function () {
-        Route::get('scan-qr', [BotWhatsappController::class, 'scanQr'])->name('bot.scanQr');
-    });
+Route::group(['prefix' => 'rockola'], function () {
+    Route::get('search', [RockolaController::class, 'search'])->name('rockola.search');
+    Route::get('playlist', [RockolaController::class, 'playlist'])->name('rockola.playlist');
 });
