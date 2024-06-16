@@ -7,6 +7,7 @@
         @livewire('mesa.modals.create-mesa-modal', ['sucursal_id' => $sucursalModel->id])
         @livewire('mesa.modals.edit-mesa-modal', ['sucursal_id' => $sucursalModel->id])
         @livewire('mesa.modals.destroy-mesa-modal')
+        @livewire('mesa.modals.qr-mesa-modal')
     </div>
     <div class="card">
         <div class="card-body">

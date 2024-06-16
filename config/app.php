@@ -56,7 +56,7 @@ return [
 
     'asset_url' => env('ASSET_URL', null),
 
-    'BOT_HOST' => env('BOT_HOST', "http://localhost"),
+    'MY_HOST' => env('MY_HOST', "http://localhost"),
 
     /*
     |--------------------------------------------------------------------------

@@ -10,13 +10,8 @@
     </div>
     <div class="card">
         <div class="card-body">
-            <div class="d-flex justify-content-between">
-                @can('pedidos.create')
-                    {{-- <button class="btn btn-primary my-3" wire:click='openCreatePedidoModal'>Registrar Pedio</button> --}}
-                @endcan
-            </div>
             @can('pedidos.index')
-                @livewire('pedido.pedido-datatable')
+                @livewire('pedido.pedido-datatable', ['sucursal_id' => $sucursalModel->id])
             @endcan
         </div>
     </div>

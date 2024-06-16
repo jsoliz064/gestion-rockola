@@ -26,9 +26,11 @@ class DestroyPedidoModal extends Component
     public function destroy()
     {
         $pedido=Pedido::find($this->pedido['id']);
-        $pedido->delete();
+        $pedido->update([
+            'terminado' => true
+        ]);
         $this->emit('updatePedidoTable');
-        $this->modalDestroy=false;
+        $this->limpiar();
     }
 
     public function cancelar()

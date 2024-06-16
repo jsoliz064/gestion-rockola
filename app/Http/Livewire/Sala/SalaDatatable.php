@@ -65,6 +65,11 @@ class SalaDatatable extends DataTableComponent
         $this->emit('openAddressesSalaModal', $salaId);
     }
 
+    public function playlist($salaId)
+    {
+        $this->emit('openPlaylistSalaModal', $salaId);
+    }
+
     public function updateSalaTable()
     {
         $this->builder();

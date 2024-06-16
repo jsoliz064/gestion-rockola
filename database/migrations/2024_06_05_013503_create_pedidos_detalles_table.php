@@ -16,8 +16,11 @@ class CreatePedidosDetallesTable extends Migration
         Schema::create('pedidos_detalles', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('video_id');
-            $table->foreign('video_id')->references('id')->on('videos')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('video_id')->nullable();
+            $table->foreign('video_id')->references('id')->on('videos')->onDelete('set null')->onUpdate('cascade');
+
+            $table->unsignedBigInteger('pedido_id');
+            $table->foreign('pedido_id')->references('id')->on('pedidos')->onDelete('cascade')->onUpdate('cascade');
 
             $table->timestamps();
         });

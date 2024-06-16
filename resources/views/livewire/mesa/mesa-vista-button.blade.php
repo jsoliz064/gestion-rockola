@@ -9,11 +9,14 @@
         </button>
         <div class="dropdown-menu dropdown-menu-personalizado">
             @can('mesas.edit')
-                <a class="dropdown-item" href="#" wire:click="edit({{ $row->id }})">Ver o Editar</a>
+                <a class="dropdown-item" href="#" wire:click="edit({{ $row->id }})">Editar</a>
             @endcan
-            <a class="dropdown-item" href="#" wire:click="addresses({{ $row->id }})">Ubicaciones</a>
+            @can('mesas.qr')
+                <a class="dropdown-item" href="#" wire:click="qr({{ $row->id }})">QR</a>
+            @endcan
             @can('mesas.delete')
-                <a class="dropdown-item" href="#" wire:click="destroy({{ $row->id }})">Eliminar</a>
+                <a class="dropdown-item" style="color: red" href="#"
+                    wire:click="destroy({{ $row->id }})">Eliminar</a>
             @endcan
         </div>
     </div>

@@ -5,6 +5,7 @@ use App\Http\Controllers\AdministrativoController;
 use App\Http\Controllers\BotWhatsappController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\EstudianteController;
+use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProduccionController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProductoOfertaController;
@@ -55,6 +56,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::group(['prefix' => 'videos'], function () {
         Route::get('/', [VideoController::class, 'index'])->name('videos.index');
+    });
+
+    Route::group(['prefix' => 'pedidos'], function () {
+        Route::get('/', [PedidoController::class, 'index'])->name('pedidos.index');
     });
 
 });

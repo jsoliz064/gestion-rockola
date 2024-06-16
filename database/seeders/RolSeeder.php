@@ -40,11 +40,14 @@ class RolSeeder extends Seeder
         Permission::firstOrCreate(['name' => 'salas.create'])->syncRoles([$role1, $role2]);
         Permission::firstOrCreate(['name' => 'salas.edit'])->syncRoles([$role1, $role2]);
         Permission::firstOrCreate(['name' => 'salas.delete'])->syncRoles([$role1, $role2]);
+        Permission::firstOrCreate(['name' => 'salas.playlist'])->syncRoles([$role1, $role2]);
 
         Permission::firstOrCreate(['name' => 'mesas.index'])->syncRoles([$role1, $role2]);
         Permission::firstOrCreate(['name' => 'mesas.create'])->syncRoles([$role1, $role2]);
         Permission::firstOrCreate(['name' => 'mesas.edit'])->syncRoles([$role1, $role2]);
         Permission::firstOrCreate(['name' => 'mesas.delete'])->syncRoles([$role1, $role2]);
+        Permission::firstOrCreate(['name' => 'mesas.pedidos'])->syncRoles([$role1, $role2]);
+        Permission::firstOrCreate(['name' => 'mesas.qr'])->syncRoles([$role1, $role2]);
 
         Permission::firstOrCreate(['name' => 'videos.index'])->syncRoles([$role1, $role2]);
         Permission::firstOrCreate(['name' => 'videos.create'])->syncRoles([$role1, $role2]);

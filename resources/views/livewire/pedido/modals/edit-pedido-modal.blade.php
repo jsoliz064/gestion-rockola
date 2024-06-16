@@ -4,71 +4,25 @@
             <div class="modald-contenido">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="exampleModalLabel">Detalles del pedido {{ $pedido->id }}</h4>
+                        <div class="modal-header d-flex justify-content-center">
+                            <h4 class="modal-title" id="exampleModalLabel">Canciones - {{ $pedido->Mesa->nombre }}</h4>
                         </div>
                         <div class="modal-body">
                             <div class="row">
-                                <div class="col-12 my-2">
-                                    <label for="">Cliente:</label>
-                                    <input type="text" value="{{ $pedido->Cliente->nombre }}" readonly="true"
-                                        class="form-control">
-                                </div>
-
-                                <div class="col-12 my-2">
-                                    <label for="">Estado del pedido:</label>
-                                    <input type="text" value="{{ $pedido->estado }}" readonly="true"
-                                        class="form-control">
-                                </div>
-
-                                <div class="col-12 my-2">
-                                    <label for="">Fecha de pedido:</label>
-                                    <input type="text" value="{{ $pedido->created_at }}" readonly="true"
-                                        class="form-control">
-                                </div>
-
-                                <div class="col-12 my-2">
-                                    <label for="">Fecha de entrega:</label>
-                                    <input type="text" value="{{ $pedido->fecha_entrega }}" readonly="true"
-                                        class="form-control">
-                                </div>
-
-                                <div class="col-12 my-2">
-                                    <label for="">Descripcion del pedido:</label>
-                                    <input type="text" value="{{ $pedido->descripcion }}" readonly="true"
-                                        class="form-control">
-                                </div>
-
-                                <div class="col-12 my-2">
-                                    <label for="">Latitud:</label>
-                                    <input type="text" value="{{ $pedido->latitud }}" readonly="true"
-                                        class="form-control">
-                                </div>
-
-                                <div class="col-12 my-2">
-                                    <label for="">Longitud:</label>
-                                    <input type="text" value="{{ $pedido->longitud }}" readonly="true"
-                                        class="form-control">
-                                </div>
-
                                 <div class="col-12 my-2">
                                     <label for="">Detalles:</label>
                                     <table class="table table-bordered">
                                         <thead>
                                             <tr>
-                                                <th scope="col">Producto</th>
-                                                <th scope="col">Cantidad</th>
-                                                <th scope="col">Precio Bs</th>
-                                                <th scope="col">Subtotal Bs</th>
+                                                <th scope="col">Cancion</th>
+                                                <th scope="col">Fecha</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($pedido->Detalles as $detalle)
                                                 <tr>
-                                                    <td>{{ $detalle->Producto->nombre }}</td>
-                                                    <td>{{ $detalle->cantidad }}</td>
-                                                    <td>{{ $detalle->precio }}</td>
-                                                    <td>{{ $detalle->subtotal }}</td>
+                                                    <td>{{ $detalle->Video->title }}</td>
+                                                    <td>{{ $detalle->created_at }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -78,29 +32,37 @@
                                 <div class="col-12">
                                     <div class="card text-center">
                                         <div class="card-header">
-                                            Total Pagado:
+                                            Total de Canciones:
                                         </div>
                                         <div class="d-flex justify-content-center p-2">
                                             <div class="col-md-3">
-                                                <label for="">Subtotal</label>
-                                                <input value="{{ $pedido->subtotal }}" type="number" readonly="true"
-                                                    class="form-control">
-                                            </div>
-
-                                            <div class="col-md-3">
-                                                <label for="">Descuento</label>
-                                                <input value="{{ $pedido->descuento }}" type="number"
-                                                    placeholder="descuento" readonly="true" class="form-control">
-                                            </div>
-
-                                            <div class="col-md-3">
-                                                <label for="">Total</label>
-                                                <input value="{{ $pedido->total }}" type="number"
-                                                    placeholder="descuento" readonly="true" class="form-control">
+                                                <label for="">{{ $pedido->Detalles->count() }}</label>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-12 text-center">
+                                    @if (!$endOrder)
+                                        <button wire:click="changeEndOrder('{{ true }}')"
+                                            class="btn btn-danger">Terminar Mesa</button>
+                                    @else
+                                        <div class="card-header">
+                                            <div class="d-flex align-items-center text-center justify-content-center">
+                                                <h5>¿Estás seguro de terminar la mesa?</h5>
+                                            </div>
+                                        </div>
+
+                                        <div class="modal-body">
+                                            <div align="center">
+                                                <button type="button" class="btn btn-secondary btn-sm my-2 mx-2"
+                                                    wire:click="changeEndOrder('{{ false }}')">Cancelar</button>
+                                                <button wire:click="finishOrder()"
+                                                    class="btn btn-danger btn-sm my-2 mx-2">Si, Terminar</button>
+                                            </div>
+                                        </div>
+                                    @endif
+                                </div>
+
                             </div>
                         </div>
                         <div class="modal-footer">

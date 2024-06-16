@@ -7,7 +7,7 @@
 
                         <div class="card-header">
                             <div class="d-flex align-items-center text-center justify-content-center">
-                                <h5>¿Estás seguro de eliminar el operador?</h5>
+                                <h5>¿Estás seguro de terminar la mesa?</h5>
                             </div>
                         </div>
 
@@ -15,8 +15,7 @@
                             <div align="center">
                                 <button type="button" class="btn btn-secondary btn-sm my-2 mx-2"
                                     wire:click="cancelar()">Cancelar</button>
-                                <button wire:click="destroy()"
-                                    class="btn btn-danger btn-sm my-2 mx-2">Eliminar</button>
+                                <button wire:click="destroy()" class="btn btn-danger btn-sm my-2 mx-2">Terminar</button>
                             </div>
                         </div>
 

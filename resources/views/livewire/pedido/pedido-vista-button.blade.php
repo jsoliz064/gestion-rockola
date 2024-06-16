@@ -12,7 +12,7 @@
                 <a class="dropdown-item" href="#" wire:click="edit({{ $row->id }})">Ver pedido</a>
             @endcan
             @can('pedidos.delete')
-                <a class="dropdown-item" href="#" wire:click="destroy({{ $row->id }})">Eliminar</a>
+                <a class="dropdown-item" style="color: red" href="#" wire:click="destroy({{ $row->id }})">Terminar</a>
             @endcan
         </div>
     </div>

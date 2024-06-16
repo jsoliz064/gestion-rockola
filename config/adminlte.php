@@ -316,18 +316,29 @@ return [
             'text' => 'Sucursales',
             'route'  => 'home',
             'icon' => 'fas fa-store',
+            'can' => 'sucursales.index'
         ],
         [
-            'text' => 'USUARIOS',
+            'text' => 'Usuarios',
             'route'  => 'users.index',
             'icon' => 'fas fa-fw fa-users',
             'can' => 'users.index'
         ],
         [
-            'text' => 'VIDEOS',
+            'text' => 'Videos',
             'route'  => 'videos.index',
             'icon' => 'fas fa-photo-video',
             'can' => 'videos.index'
+        ],
+        [
+            'text' => 'Search',
+            'route'  => 'rockola.search',
+            // 'icon' => 'fas fa-photo-video',
+        ],
+        [
+            'text' => 'Playlist',
+            'route'  => 'rockola.playlist',
+            // 'icon' => 'fas fa-photo-video',
         ],
     ],
 

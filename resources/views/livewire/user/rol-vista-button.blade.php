@@ -11,7 +11,7 @@
                 <a class="dropdown-item" href="{{ route('roles.edit', $row->id) }}">Ver o Editar</a>
             @endcan
             @can('roles.delete') 
-                <a class="dropdown-item" href="#" wire:click="destroy({{ $row->id }})">Eliminar</a>
+                <a class="dropdown-item" style="color: red" href="#" wire:click="destroy({{ $row->id }})">Eliminar</a>
             @endcan
         </div>
     </div>

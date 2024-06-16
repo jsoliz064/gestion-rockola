@@ -16,6 +16,11 @@ class Pedido extends Model
         return $this->hasMany(PedidoDetalle::class, 'pedido_id');
     }
 
+    public function Sala()
+    {
+        return $this->belongsTo(Sala::class, 'sala_id');
+    }
+
     public function Mesa()
     {
         return $this->belongsTo(Mesa::class, 'mesa_id');

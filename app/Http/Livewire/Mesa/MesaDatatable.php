@@ -43,6 +43,19 @@ class MesaDatatable extends DataTableComponent
                 )
                 ->sortable()
                 ->searchable(),
+            Column::make("Estado")
+                ->label(
+                    function ($row, Column $column) {
+                        $row->refresh();
+                        $order = $row->Order;
+                        if (is_null($order)) {
+                            return '<span class="text-danger">Sin canción</span>';
+                        } else {
+                            return '<span class="text-success">Reproduciendo</span>';
+                        }
+                    }
+                )
+                ->html(),
             Column::make('Acciones', 'id')
                 ->format(function ($value, $row, Column $column) {
                     return view('livewire.mesa.mesa-vista-button', [
@@ -68,9 +81,9 @@ class MesaDatatable extends DataTableComponent
         $this->emit('openDestroyMesaModal', $mesaId);
     }
 
-    public function addresses($mesaId)
+    public function qr($mesaId)
     {
-        $this->emit('openAddressesMesaModal', $mesaId);
+        $this->emit('openQrMesaModal', $mesaId);
     }
 
     public function updateMesaTable()

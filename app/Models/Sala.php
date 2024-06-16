@@ -17,9 +17,23 @@ class Sala extends Model
         return $this->belongsTo(Sucursal::class, 'sucursal_id');
     }
 
-    public function Mesa()
+    public function Mesas()
     {
         return $this->hasMany(Mesa::class, 'sala_id');
     }
 
+    public function ListaReproduccion()
+    {
+        return $this->hasMany(ListaReproduccion::class, 'sala_id');
+    }
+
+    public function Order()
+    {
+        $order = Pedido::where('terminado', false)
+            ->where('mesa_id', $this->id)
+            ->orderby('created_at', 'desc')
+            ->first();
+
+        return $order;
+    }
 }

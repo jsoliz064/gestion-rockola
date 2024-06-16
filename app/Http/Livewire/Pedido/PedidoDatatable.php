@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Pedido;
 
 use App\Models\Pedido;
+use App\Models\Sucursal;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Illuminate\Database\Eloquent\Builder;
@@ -12,9 +13,15 @@ class PedidoDatatable extends DataTableComponent
     protected $listeners = ['updatePedidoTable'];
     protected $model = Pedido::class;
 
+    public $sucursalModel;
+    public function mount($sucursal_id)
+    {
+        $this->sucursalModel = Sucursal::find($sucursal_id);
+    }
+
     public function configure(): void
     {
-        $this->setPrimaryKey('id');
+        $this->setPrimaryKey('id')->setDefaultSort('id', 'desc');
     }
 
     public function columns(): array
@@ -23,38 +30,52 @@ class PedidoDatatable extends DataTableComponent
             Column::make("Id", "id")
                 ->sortable()
                 ->searchable(),
-            Column::make("Cliente")
+            Column::make("Sala")
                 ->label(
                     function ($row, Column $column) {
                         $row->refresh();
-                        $cliente = $row->Cliente;
-                        return $cliente->nombre;
+                        $sala = $row->Sala;
+                        return $sala->nombre;
                     }
                 )
                 ->sortable()
                 ->searchable(),
-            Column::make("Telefono")
+            Column::make("Mesa")
                 ->label(
                     function ($row, Column $column) {
                         $row->refresh();
-                        $cliente = $row->Cliente;
-                        return $cliente->telefono;
+                        $mesa = $row->Mesa;
+                        return $mesa->nombre;
                     }
                 )
                 ->sortable()
                 ->searchable(),
-            Column::make("Total Bs", "total")
+            Column::make("Cant. Canciones")
+                ->label(
+                    function ($row, Column $column) {
+                        $row->refresh();
+                        $detalles = $row->Detalles;
+                        return sizeof($detalles);
+                    }
+                )
                 ->sortable()
                 ->searchable(),
-            Column::make("Fecha de pedido", "created_at")
+            Column::make("Fecha de Inicio", "created_at")
                 ->sortable()
                 ->searchable(),
-            Column::make("Fecha de entrega", "fecha_entrega")
-                ->sortable()
-                ->searchable(),
-            Column::make("Estado", "estado")
-                ->sortable()
-                ->searchable(),
+            Column::make("Estado")
+                ->label(
+                    function ($row, Column $column) {
+                        $row->refresh();
+                        $terminado = $row->terminado;
+                        if ($terminado) {
+                            return '<span class="text-danger">Terminado</span>';
+                        } else {
+                            return '<span class="text-success">Reproduciendo</span>';
+                        }
+                    }
+                )
+                ->html(),
             Column::make('Acciones', 'id')
                 ->format(function ($value, $row, Column $column) {
                     return view('livewire.pedido.pedido-vista-button', [
@@ -66,7 +87,7 @@ class PedidoDatatable extends DataTableComponent
 
     public function builder(): Builder
     {
-        return Pedido::query();
+        return Pedido::query()->where('sucursal_id', $this->sucursalModel->id);
     }
 
     public function edit($pedidoId)

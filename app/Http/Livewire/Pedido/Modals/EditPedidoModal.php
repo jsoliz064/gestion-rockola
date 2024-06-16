@@ -12,11 +12,16 @@ class EditPedidoModal extends Component
     public $modalEdit = false;
 
     public $pedido;
-    public $email = null;
+    public $endOrder = false;
 
     public function render()
     {
         return view('livewire.pedido.modals.edit-pedido-modal');
+    }
+
+    public function changeEndOrder($value)
+    {
+        $this->endOrder = $value;
     }
 
     public function openEditPedidoModal($id)
@@ -25,18 +30,14 @@ class EditPedidoModal extends Component
         $this->modalEdit = true;
     }
 
-    public function update()
+    public function finishOrder()
     {
-        $this->validate([
-            'pedido.nombre' => 'required|string|max:255',
-            'pedido.descripcion' => 'nullable|string|max:255',
-            'pedido.precio' => 'required|number',
-            'pedido.stock' => 'nullable|number',
+        $pedido = Pedido::find($this->pedido->id);
+        $pedido->update([
+            'terminado' => true
         ]);
-        $pedido = Pedido::find($this->pedido['id']);
-        $pedido->update($this->pedido);
-        $this->emit('updatePedidoTable');
         $this->limpiar();
+        $this->emit('updatePedidoTable');
     }
 
     public function cancelar()
@@ -48,5 +49,6 @@ class EditPedidoModal extends Component
     {
         $this->pedido = null;
         $this->modalEdit = false;
+        $this->endOrder = false;
     }
 }

@@ -18,6 +18,11 @@ class ListaReproduccion extends Model
 
     public function Mesa()
     {
-        return $this->belongsTo(Mesa::class, 'mesa_is');
+        return $this->belongsTo(Mesa::class, 'mesa_id');
+    }
+
+    public function Video()
+    {
+        return $this->belongsTo(Video::class, 'video_id');
     }
 }

@@ -7,6 +7,7 @@
         @livewire('sala.modals.create-sala-modal', ['sucursal_id' => $sucursalModel->id])
         @livewire('sala.modals.edit-sala-modal')
         @livewire('sala.modals.destroy-sala-modal')
+        @livewire('sala.modals.playlist-sala-modal')
     </div>
     <div class="card">
         <div class="card-body">
