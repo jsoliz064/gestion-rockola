@@ -16,6 +16,7 @@ class CreatePedidosTable extends Migration
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
 
+            $table->text('invitacion_url')->nullable();
             $table->boolean('terminado')->default(false);
 
             $table->unsignedBigInteger('mesa_id');

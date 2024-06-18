@@ -61,10 +61,13 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::group(['prefix' => 'pedidos'], function () {
         Route::get('/', [PedidoController::class, 'index'])->name('pedidos.index');
     });
-
 });
 
 Route::group(['prefix' => 'rockola'], function () {
     Route::get('search', [RockolaController::class, 'search'])->name('rockola.search');
     Route::get('playlist', [RockolaController::class, 'playlist'])->name('rockola.playlist');
+
+    Route::group(['prefix' => 'mesa'], function () {
+        Route::get('/{jwt}', [RockolaController::class, 'mesaSearch'])->name('rockola.mesaSearch');
+    });
 });

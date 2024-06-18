@@ -17,14 +17,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::middleware([AuthMiddleware::class])->prefix('pedidos')->group(function () {
-    Route::post('/', [PedidoController::class, 'create']);
-});
-
-Route::middleware([AuthMiddleware::class])->prefix('videos')->group(function () {
-    Route::get('/', [VideoController::class, 'getAll']);
+Route::middleware([AuthMiddleware::class])->prefix('rockola')->group(function () {
+    Route::get('videos', [VideoController::class, 'getAll']);
+    Route::get('search', [VideoController::class, 'searchVideos']);
+    Route::get('add-video', [VideoController::class, 'addVideo']);
 });

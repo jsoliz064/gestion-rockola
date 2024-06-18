@@ -38,6 +38,7 @@ class EditPedidoModal extends Component
         ]);
         $this->limpiar();
         $this->emit('updatePedidoTable');
+        $this->emit('updateMesaTable');
     }
 
     public function cancelar()

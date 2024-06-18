@@ -7,13 +7,33 @@
                         <div class="modal-header d-flex justify-content-center">
                             <h4 class="modal-title" id="exampleModalLabel">QR del Buscador de Canciones</h4>
                         </div>
+
                         <div class="modal-body d-flex justify-content-center">
-                            @if ($imageQr)
-                                <img id="qrImage" src="{{ $imageQr }}" alt="QR Code">
+                            @if ($mesaUrl)
+                                @if ($imageQr)
+                                    <div class="row">
+                                        <div class="row-12">
+                                            <img id="qrImage" src="{{ $imageQr }}" alt="QR Code">
+                                        </div>
+                                        <div class="col-12" style="width: 10px;">
+                                            <p>{{ $mesaUrl }}</p>
+                                        </div>
+                                    </div>
+                                @endif
+                            @else
+                                <div class="row text-center justify-content-center">
+                                    <label for="">La mesa se encuentra libre. Haga Click en "Habilitar Mesa"
+                                        para
+                                        permitir solicitar canciones</label>
+                                    <button wire:click="createPedido()" class="btn btn-primary">Habilitar Mesa</button>
+                                </div>
                             @endif
                         </div>
+
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-success" onclick="downloadQr()">Descargar</button>
+                            @if ($mesaUrl)
+                                <button type="button" class="btn btn-success" onclick="downloadQr()">Descargar</button>
+                            @endif
                             <button type="button" class="btn btn-secondary" wire:click="cancelar()">Cerrar</button>
                         </div>
                     </div>

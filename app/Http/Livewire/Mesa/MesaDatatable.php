@@ -47,11 +47,11 @@ class MesaDatatable extends DataTableComponent
                 ->label(
                     function ($row, Column $column) {
                         $row->refresh();
-                        $order = $row->Order;
+                        $order = $row->Pedido();
                         if (is_null($order)) {
-                            return '<span class="text-danger">Sin canción</span>';
+                            return '<span class="text-success">Libre</span>';
                         } else {
-                            return '<span class="text-success">Reproduciendo</span>';
+                            return '<span class="text-danger">Ocupada</span>';
                         }
                     }
                 )

@@ -58,6 +58,10 @@ return [
 
     'MY_HOST' => env('MY_HOST', "http://localhost"),
 
+    'JWT_KEY' => env('JWT_KEY', 'rockola'),
+    'JWT_EXPIRATION_HOURS' => env('JWT_EXPIRATION_HOURS', 6),
+
+    'YOUTUBE_API_KEY' => env('YOUTUBE_API_KEY', null),
     /*
     |--------------------------------------------------------------------------
     | Application Timezone

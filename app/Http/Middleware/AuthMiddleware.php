@@ -3,14 +3,16 @@
 namespace App\Http\Middleware;
 
 use App\Exceptions\ExceptionArray;
+use App\Models\Pedido;
+use App\Traits\JwtTrait;
 use App\Traits\ResponseTrait;
-// use App\Traits\UserJwt;
 use Closure;
+use Exception;
 use Illuminate\Http\Request;
 
 class AuthMiddleware
 {
-    use ResponseTrait;
+    use ResponseTrait, JwtTrait;
 
     /**
      * Handle an incoming request.
@@ -22,20 +24,27 @@ class AuthMiddleware
     public function handle(Request $request, Closure $next)
     {
         try {
-            // $token = $request->header('Authorization');
-
-            // if (!$token) {
-            //     throw new ExceptionArray("Token de Authorization Requerido", 401);
-            // }
-
-            // $user = $this->userDecode($token);
-            // if ($user->enable===false){
-            //     throw new ExceptionArray("Usuario no autorizado", 401);
-            // }
-            
-            // $request['user'] = $user;
             return $next($request);
-        } catch (ExceptionArray $th) {
+
+            $token = $request->header('Authorization');
+
+            if (!$token) {
+                throw new Exception("Token de Authorization Requerido", 401);
+            }
+
+            $pedidoArray = $this->decodeJWT($token);
+            $pedido = Pedido::find($pedidoArray->id);
+            if ($pedido == null) {
+                throw new Exception("Pedido no encontrado", 401);
+            }
+
+            if ($pedido->terminado) {
+                throw new Exception("Pedido de canciones finalizado", 401);
+            }
+
+            $request['pedido'] = $pedido;
+            return $next($request);
+        } catch (\Throwable $th) {
             return $this->ResponseThrow($th);
         }
     }

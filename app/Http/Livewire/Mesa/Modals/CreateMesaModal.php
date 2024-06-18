@@ -24,7 +24,6 @@ class CreateMesaModal extends Component
     {
         $salas = Sala::where('salas.sucursal_id', $this->sucursalModel->id)
             ->get();
-
         return view('livewire.mesa.modals.create-mesa-modal', compact('salas'));
     }
 

@@ -30,6 +30,7 @@ class DestroyPedidoModal extends Component
             'terminado' => true
         ]);
         $this->emit('updatePedidoTable');
+        $this->emit('updateMesaTable');
         $this->limpiar();
     }
 

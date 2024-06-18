@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Mesa;
-use App\Models\Sucursal;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class MesaSeeder extends Seeder
 {
