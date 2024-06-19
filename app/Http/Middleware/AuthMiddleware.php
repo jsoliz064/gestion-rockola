@@ -24,7 +24,7 @@ class AuthMiddleware
     public function handle(Request $request, Closure $next)
     {
         try {
-            return $next($request);
+            // return $next($request);
 
             $token = $request->header('Authorization');
 

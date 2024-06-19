@@ -1,14 +1,6 @@
 <?php
 
-use App\Http\Controllers\ClienteController;
-use App\Http\Controllers\AdministrativoController;
-use App\Http\Controllers\BotWhatsappController;
-use App\Http\Controllers\CursoController;
-use App\Http\Controllers\EstudianteController;
 use App\Http\Controllers\PedidoController;
-use App\Http\Controllers\ProduccionController;
-use App\Http\Controllers\ProductoController;
-use App\Http\Controllers\ProductoOfertaController;
 use App\Http\Controllers\RockolaController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\SucursalController;
@@ -64,9 +56,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 });
 
 Route::group(['prefix' => 'rockola'], function () {
-    Route::get('search', [RockolaController::class, 'search'])->name('rockola.search');
-    Route::get('playlist', [RockolaController::class, 'playlist'])->name('rockola.playlist');
-
     Route::group(['prefix' => 'mesa'], function () {
         Route::get('/{jwt}', [RockolaController::class, 'mesaSearch'])->name('rockola.mesaSearch');
     });

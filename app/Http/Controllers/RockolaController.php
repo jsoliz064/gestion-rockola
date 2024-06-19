@@ -11,15 +11,6 @@ use Illuminate\Http\Request;
 class RockolaController extends Controller
 {
     use JwtTrait;
-    public function search()
-    {
-        return view('cruds.rockola.search');
-    }
-
-    public function playlist()
-    {
-        return view('cruds.rockola.playlist');
-    }
 
     public function mesaSearch(Request $request, $jwt)
     {

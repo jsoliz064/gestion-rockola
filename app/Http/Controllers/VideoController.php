@@ -87,6 +87,32 @@ class VideoController extends Controller
         return response()->json($videos, 200);
     }
 
+    public function getSalaPlaylist(Request $request)
+    {
+        try {
+            $pedido = $request->pedido;
+            $sala = $pedido->sala;
+            $playlist = ListaReproduccion::select(
+                'lista_reproduccion.id',
+                'lista_reproduccion.created_at',
+                'videos.title',
+                'videos.thumbnails_default',
+                'videos.thumbnails_medium',
+                'videos.thumbnails_heigh',
+                'videos.duration',
+                'mesas.nombre as mesa'
+            )
+                ->where('lista_reproduccion.sala_id', $sala->id)
+                ->join('videos', 'videos.id', 'lista_reproduccion.video_id')
+                ->join('mesas', 'mesas.id', 'lista_reproduccion.mesa_id')
+                ->orderby('created_at', 'asc')
+                ->get();
+            return response()->json($playlist, 200);
+        } catch (\Throwable $th) {
+            return $this->ResponseThrow($th);
+        }
+    }
+
     public function addVideo(Request $request)
     {
         try {
@@ -115,7 +141,6 @@ class VideoController extends Controller
 
                 return $pedidoDetalle;
             });
-
 
             return response()->json($pedidoDetalle);
         } catch (\Throwable $th) {

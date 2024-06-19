@@ -29,6 +29,9 @@ class VideoDatatable extends DataTableComponent
             Column::make("Titulo", "title")
                 ->sortable()
                 ->searchable(),
+            Column::make("Duracion", "duration")
+                ->sortable()
+                ->searchable(),
             Column::make('Acciones', 'id')
                 ->format(function ($value, $row, Column $column) {
                     return view('livewire.video.video-vista-button', [

@@ -1,9 +1,7 @@
 <?php
 
-use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\VideoController;
 use App\Http\Middleware\AuthMiddleware;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware([AuthMiddleware::class])->prefix('rockola')->group(function () {
     Route::get('videos', [VideoController::class, 'getAll']);
+    Route::get('playlist', [VideoController::class, 'getSalaPlaylist']);
     Route::get('search', [VideoController::class, 'searchVideos']);
-    Route::get('add-video', [VideoController::class, 'addVideo']);
+    Route::post('add-video', [VideoController::class, 'addVideo']);
 });

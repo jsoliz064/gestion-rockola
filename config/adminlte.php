@@ -330,16 +330,6 @@ return [
             'icon' => 'fas fa-photo-video',
             'can' => 'videos.index'
         ],
-        [
-            'text' => 'Search',
-            'route'  => 'rockola.search',
-            // 'icon' => 'fas fa-photo-video',
-        ],
-        [
-            'text' => 'Playlist',
-            'route'  => 'rockola.playlist',
-            // 'icon' => 'fas fa-photo-video',
-        ],
     ],
 
     /*
