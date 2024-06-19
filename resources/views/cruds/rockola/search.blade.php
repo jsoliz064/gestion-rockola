@@ -1,16 +1,19 @@
-@extends('adminlte::page')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('title', 'Rockola Search')
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+</head>
 
-@section('content')
+<body>
     <div id="app">
-        <search></search>
+        <search :token="'{{$token}}'"></search>
     </div>
-@stop
-
-@section('css')
-@stop
-
-@section('js')
     <script src="{{ mix('js/app.js') }}"></script>
-@stop
+</body>
+
+</html>

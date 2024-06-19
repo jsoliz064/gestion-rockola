@@ -12,13 +12,22 @@
             @input="filterOptions"
           />
           <button class="btn btn-primary">Buscar</button>
-          <ul v-if="query && filteredOptions.length" class="options-list">
+          <ul v-if="query" class="options-list">
             <li
               v-for="option in filteredOptions"
-              :key="option"
-              @click="selectOption(option)"
+              :key="option.title"
+              @click="showAlert(option)"
             >
-              {{ option }}
+              <img
+                :src="option.thumbnails_default"
+                alt="Video Thumbnail"
+                class="img-thumbnail mr-3"
+                style="width: 100px; height: 56px"
+              />
+              {{ option.title }}
+            </li>
+            <li v-if="!filteredOptions.length" class="no-results">
+              Buscar más
             </li>
           </ul>
         </div>
@@ -28,17 +37,17 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2';
 export default {
+  props:{
+     options: {
+      type: Array,
+      required: true,
+    },
+  },
   data() {
     return {
       query: "",
-      options: [
-        "Song 1",
-        "Song 2",
-        "Song 3",
-        "Another Song",
-        "Yet Another Song",
-      ],
       filteredOptions: [],
     };
   },
@@ -46,16 +55,42 @@ export default {
     filterOptions() {
       if (this.query) {
         this.filteredOptions = this.options.filter((option) =>
-          option.toLowerCase().includes(this.query.toLowerCase())
+          option.title.toLowerCase().includes(this.query.toLowerCase())
         );
       } else {
         this.filteredOptions = [];
       }
     },
     selectOption(option) {
-      this.query = option;
+      this.query = option.title;
       this.filteredOptions = [];
     },
+    showAlert(option) {
+      Swal.fire({
+        title: '¿Estás seguro de agregar esta canción?',
+        html: `
+          <img src="${option.thumbnails_medium}" alt="Thumbnail" style="width: 90%; height: 85%;">
+          <p>${option.title}</p>
+        `,
+        showCancelButton: true,
+        cancelButtonText: 'No',
+        confirmButtonText: 'Sí',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.confirmAction(option);
+        } else {
+          this.cancelAction();
+        }
+      });
+    },
+    confirmAction(option) {
+      // Acción a tomar cuando se confirma
+      console.log('Id:', option.videoId);
+    },
+    cancelAction() {
+      // Acción a tomar cuando se cancela
+      console.log('Acción cancelada');
+    }
   },
 };
 </script>
@@ -124,5 +159,9 @@ body {
 
 .options-list li:hover {
   background: #f0f0f0;
+}
+
+.img-thumbnail {
+  margin-right: 10px;
 }
 </style>

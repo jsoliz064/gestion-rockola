@@ -21,15 +21,15 @@ class RockolaController extends Controller
         return view('cruds.rockola.playlist');
     }
 
-    public function mesaSearch(Request $request, $jwt)
+    public function mesaSearch(Request $request, $token)
     {
         try {
-            $pedidoArray = $this->decodeJWT($jwt);
+            $pedidoArray = $this->decodeJWT($token);
             $pedido = Pedido::find($pedidoArray->id);
             if ($pedido->terminado) {
                 abort(404);
             }
-            return view('cruds.rockola.search');
+            return view('cruds.rockola.search',compact('token'));
         } catch (\Throwable $th) {
             abort(404, $th->getMessage());
         }
