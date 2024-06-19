@@ -9,11 +9,15 @@
 ```
 ASSET_URL=/public
 
-BOT_HOST=http://bot-pedidos:3000
-GESTION_PORT=8000
+MY_HOST=http://localhost:8000
+
+JWT_KEY=
+JWT_EXPIRATION_HOURS=
+
+YOUTUBE_API_KEY=
 
 DB_CONNECTION=mysql
-DB_HOST=mysql-pedidos
+DB_HOST=mysql-rockola
 DB_PORT=3306
 DB_DATABASE=
 DB_USERNAME=root
@@ -37,9 +41,9 @@ DB_PASSWORD=
 ```
     composer install
     
-    docker exec gestion-pedidos chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+    docker exec gestion-rockola chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-    docker exec gestion-pedidos chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+    docker exec gestion-rockola chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
     php artisan optimize
 ```
