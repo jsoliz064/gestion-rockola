@@ -65,8 +65,8 @@ class VideoController extends Controller
 
             $savedVideos = [];
             foreach ($filteredVideos as $video) {
-                $video = Video::where('videoId', $video['id'])->first();
-                if ($video == null) {
+                $videoFind = Video::where('videoId', $video['id'])->first();
+                if ($videoFind == null) {
                     $savedVideos[] = Video::create([
                         'videoId' => $video['id'],
                         'title' => $video['snippet']['title'],
@@ -79,8 +79,9 @@ class VideoController extends Controller
             }
 
             return response()->json($savedVideos);
-        } catch (\Exception $e) {
-            return response()->json(['error' => 'An error occurred while fetching videos'], 500);
+        } catch (\Throwable $th) {
+            $message = $th->getMessage();
+            return response()->json(['error' => "An error occurred while fetching videos, {$message}"], 500);
         }
     }
 
