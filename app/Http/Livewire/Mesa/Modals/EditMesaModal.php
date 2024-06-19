@@ -6,7 +6,7 @@ use App\Models\Mesa;
 use App\Models\Sala;
 use App\Models\Sucursal;
 use Livewire\Component;
-
+use Illuminate\Support\Str;
 class EditMesaModal extends Component
 {
     protected $listeners = ['openEditMesaModal'];
@@ -34,11 +34,17 @@ class EditMesaModal extends Component
         $this->modalEdit = true;
     }
 
+    public function changeToken()
+    {
+        $this->mesa['token'] = Str::uuid();
+    }
+
     public function update()
     {
         $this->validate([
             'mesa.nombre' => 'required|string|max:255',
             'mesa.sala_id' => 'required|numeric',
+            'mesa.token' => 'required|string|max:255',
         ]);
         $mesa = Mesa::find($this->mesa['id']);
         $mesa->update($this->mesa);

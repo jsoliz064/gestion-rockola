@@ -14,6 +14,13 @@
                                 <small class="text-danger">Debe ingresar un nombre</small>
                             @enderror
 
+                            <h5>Token:</h5>
+                            <input type="text" wire:model="mesa.token" class="form-control" readonly="true">
+                            @error('sala.token')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                            <button wire:click="changeToken" class="btn btn-light my-1">Renovar Token</button>
+
                             <h5>Sala:</h5>
                             <select wire:model="mesa.sala_id" class="form-control">
                                 @foreach ($salas as $sala)

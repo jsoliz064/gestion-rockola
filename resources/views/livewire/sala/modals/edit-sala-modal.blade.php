@@ -22,7 +22,7 @@
 
                             <h5>Token:</h5>
                             <input type="text" wire:model="sala.token" class="form-control" readonly="true">
-                            @error('sala.descripcion')
+                            @error('sala.token')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
                             <button wire:click="changeToken" class="btn btn-light my-1">Renovar Token</button>

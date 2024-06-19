@@ -30,7 +30,8 @@ class QrMesaModal extends Component
     public $modalQr = false;
     public $mesa;
     public $imageQr;
-    public $mesaUrl = "";
+    public $mesaPublicUrl = "";
+    public $mesaPrivateUrl = "";
 
     public function render()
     {
@@ -40,10 +41,7 @@ class QrMesaModal extends Component
     public function openQrMesaModal($id)
     {
         $this->mesa = Mesa::find($id);
-        $pedido = $this->mesa->pedido();
-        if ($pedido) {
-            $this->getQr();
-        }
+        $this->getQr();
         $this->modalQr = true;
     }
 
@@ -56,7 +54,7 @@ class QrMesaModal extends Component
     {
         $this->mesa = null;
         $this->modalQr = false;
-        $this->mesaUrl = "";
+        $this->mesaPublicUrl = "";
     }
 
     public function createPedido()
@@ -68,26 +66,20 @@ class QrMesaModal extends Component
                 'sala_id' => $mesa->Sala->id,
                 'sucursal_id' => $mesa->Sala->Sucursal->id,
             ]);
-            $jwt = $this->encodeJWT($pedido->toArray());
-            $url = config('app.MY_HOST');
-            $invitacion_url = "{$url}/rockola/mesa/{$jwt}";
-            $pedido->update([
-                'invitacion_url' => $invitacion_url
-            ]);
-
+            
             return $pedido;
         });
-        $this->getQr();
         $this->emit('updateMesaTable');
         $this->emit('updatePedidoTable');
     }
 
     public function getQr()
     {
-        $pedido = $this->mesa->Pedido();
-        $search_link = $pedido->invitacion_url;
-        $this->mesaUrl = $search_link;
-        $qrCode = QrCode::create($search_link)
+        $token = $this->mesa->token;
+        $url = config('app.MY_HOST');
+        $mesaUrl = "{$url}/rockola/mesa/{$token}";
+        $this->mesaPublicUrl = $mesaUrl;
+        $qrCode = QrCode::create($mesaUrl)
             ->setEncoding(new Encoding('UTF-8'))
             ->setErrorCorrectionLevel(new ErrorCorrectionLevelLow())
             ->setSize(250)

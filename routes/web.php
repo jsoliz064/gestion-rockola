@@ -57,6 +57,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
 Route::group(['prefix' => 'rockola'], function () {
     Route::group(['prefix' => 'mesa'], function () {
-        Route::get('/{jwt}', [RockolaController::class, 'mesaSearch'])->name('rockola.mesaSearch');
+        Route::get('/{token}', [RockolaController::class, 'rockolaMesa'])->name('rockola.mesa');
+        Route::get('search/{jwt}', [RockolaController::class, 'rockolaMesaSearch'])->name('rockola.mesa.search');
     });
 });

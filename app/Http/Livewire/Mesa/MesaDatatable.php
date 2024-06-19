@@ -33,6 +33,9 @@ class MesaDatatable extends DataTableComponent
             Column::make("Nombre", "nombre")
                 ->sortable()
                 ->searchable(),
+            Column::make("Token", "token")
+                ->sortable()
+                ->searchable(),
             Column::make("Sala")
                 ->label(
                     function ($row, Column $column) {

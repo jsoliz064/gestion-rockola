@@ -6,6 +6,7 @@ use App\Models\Mesa;
 use App\Models\Sala;
 use App\Models\Sucursal;
 use Livewire\Component;
+use Illuminate\Support\Str;
 
 class CreateMesaModal extends Component
 {
@@ -39,6 +40,7 @@ class CreateMesaModal extends Component
             'mesa.sala_id' => 'required|numeric',
         ]);
 
+        $this->mesa['token']=Str::uuid();
         Mesa::create($this->mesa);
 
         $this->emit('updateMesaTable');
