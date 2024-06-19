@@ -152,8 +152,9 @@ class VideoController extends Controller
         }
     }
 
-    public function getLastVideo()
+    public function getLastVideo(Request $request)
     {
+        $sala = $request->sala;
         $video = ListaReproduccion::select(
             'lista_reproduccion.id',
             'videos.videoId',
@@ -163,8 +164,16 @@ class VideoController extends Controller
         )
             ->join('videos', 'videos.id', 'lista_reproduccion.video_id')
             ->join('mesas', 'mesas.id', 'lista_reproduccion.mesa_id')
+            ->where('lista_reproduccion.sala_id', $sala->id)
             ->orderby('lista_reproduccion.created_at', 'asc')
             ->first();
-        return response()->json($video, 200);
+
+        if ($video == null) {
+            return response()->json(['message' => "playlist empty"], 400);
+        }
+
+        $videoSend = $video;
+        $video->delete();
+        return response()->json($videoSend, 200);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Sala\Modals;
 
 use App\Models\Sala;
 use Livewire\Component;
+use Illuminate\Support\Str;
 
 class EditSalaModal extends Component
 {
@@ -24,11 +25,17 @@ class EditSalaModal extends Component
         $this->modalEdit = true;
     }
 
+    public function changeToken()
+    {
+        $this->sala['token'] = Str::uuid();
+    }
+
     public function update()
     {
         $this->validate([
             'sala.nombre' => 'required|string|max:255',
             'sala.descripcion' => 'required|string|max:255',
+            'sala.token' => 'required|string|max:255',
         ]);
         $sala = Sala::find($this->sala['id']);
         $sala->update($this->sala);

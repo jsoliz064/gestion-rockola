@@ -35,14 +35,5 @@ class MesaSeeder extends Seeder
             'sala_id' => 2,
         ]);
 
-        Mesa::create([
-            'nombre' => "Mesa 1",
-            'sala_id' => 3,
-        ]);
-
-        Mesa::create([
-            'nombre' => "Mesa 2",
-            'sala_id' => 4,
-        ]);
     }
 }

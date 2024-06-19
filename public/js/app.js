@@ -5769,7 +5769,35 @@ function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyri
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-var url = "http://localhost:8000";
+
+// let url = "http://localhost:8000";
+
+var getDomain = function getDomain() {
+  var domain = window.location.hostname;
+  if (domain == "127.0.0.1") {
+    return "";
+  }
+  var originalString = window.location.href;
+  var count = 0;
+  var fourthSlashIndex = -1;
+  for (var i = 0; i < originalString.length; i++) {
+    if (originalString[i] === "/") {
+      count++;
+      if (count === 3) {
+        fourthSlashIndex = i;
+        break;
+      }
+    }
+  }
+  var resultString = "";
+  if (fourthSlashIndex !== -1) {
+    resultString = originalString.substring(0, fourthSlashIndex);
+  } else {
+    resultString = originalString;
+  }
+  return resultString;
+};
+var url = getDomain();
 function getAllVideos() {
   return _getAllVideos.apply(this, arguments);
 }

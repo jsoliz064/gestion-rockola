@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Sala\Modals;
 use App\Models\Sala;
 use App\Models\Sucursal;
 use Livewire\Component;
+use Illuminate\Support\Str;
 
 class CreateSalaModal extends Component
 {
@@ -37,6 +38,7 @@ class CreateSalaModal extends Component
         ]);
 
         $this->sala['sucursal_id'] = $this->sucursalModel->id;
+        $this->sala['token']=Str::uuid();
         Sala::create($this->sala);
         $this->emit('updateSalaTable');
         $this->limpiar();

@@ -1,6 +1,36 @@
 import axios from "axios";
 
-const url = "http://localhost:8000";
+// let url = "http://localhost:8000";
+
+const getDomain = () => {
+    const domain = window.location.hostname;
+    if (domain == "127.0.0.1") {
+        return "";
+    }
+    const originalString = window.location.href;
+
+    let count = 0;
+    let fourthSlashIndex = -1;
+    for (let i = 0; i < originalString.length; i++) {
+        if (originalString[i] === "/") {
+            count++;
+            if (count === 3) {
+                fourthSlashIndex = i;
+                break;
+            }
+        }
+    }
+
+    let resultString = "";
+    if (fourthSlashIndex !== -1) {
+        resultString = originalString.substring(0, fourthSlashIndex);
+    } else {
+        resultString = originalString;
+    }
+    return resultString;
+};
+
+let url = getDomain();
 
 async function getAllVideos() {
     try {
@@ -91,5 +121,5 @@ export default {
     getAllVideos,
     getSalaPlaylist,
     addVideo,
-    searchVideos
+    searchVideos,
 };

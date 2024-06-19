@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Sala;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class SalaSeeder extends Seeder
 {
@@ -14,28 +15,19 @@ class SalaSeeder extends Seeder
      */
     public function run()
     {
-        $p1 = Sala::create([
+        Sala::create([
             'nombre' => "Adentro",
             'descripcion' => "Patio de la rockola",
+            'token'=>Str::uuid(),
             'sucursal_id' => 1,
         ]);
 
-        $p1 = Sala::create([
+        Sala::create([
             'nombre' => "Afuera",
             'descripcion' => "Bar de la rockola",
+            'token'=>Str::uuid(),
             'sucursal_id' => 1,
         ]);
-
-        $p1 = Sala::create([
-            'nombre' => "Adentro",
-            'descripcion' => "Patio de la rockola",
-            'sucursal_id' => 2,
-        ]);
-
-        $p1 = Sala::create([
-            'nombre' => "Afuera",
-            'descripcion' => "Bar de la rockola",
-            'sucursal_id' => 2,
-        ]);
+        
     }
 }

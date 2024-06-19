@@ -17,6 +17,7 @@ class CreateSalasTable extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('descripcion')->nullable();
+            $table->string('token');
             $table->unsignedBigInteger('sucursal_id');
             $table->foreign('sucursal_id')->references('id')->on('sucursales')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

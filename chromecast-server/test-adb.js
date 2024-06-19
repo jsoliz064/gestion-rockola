@@ -4,8 +4,7 @@ const { exec } = require('child_process');
 const app = express();
 const port = 3000;
 
-// Ruta completa al ejecutable adb
-const adbPath = 'C:\\wifiphone\\adb';
+const adbPath = './adb/adb';
 
 app.use(express.json());
 

@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Exceptions\ExceptionArray;
 use App\Models\Pedido;
+use App\Models\Sala;
 use App\Traits\JwtTrait;
 use App\Traits\ResponseTrait;
 use Closure;
@@ -24,26 +25,18 @@ class AuthTvMiddleware
     public function handle(Request $request, Closure $next)
     {
         try {
-            // return $next($request);
-            return $next($request);
-
             $token = $request->header('Authorization');
 
             if (!$token) {
                 throw new Exception("Token de Authorization Requerido", 401);
             }
 
-            $pedidoArray = $this->decodeJWT($token);
-            $pedido = Pedido::find($pedidoArray->id);
-            if ($pedido == null) {
-                throw new Exception("Pedido no encontrado", 401);
+            $sala = Sala::where('token', $token)->first();
+            if ($sala == null) {
+                throw new Exception("Sala no encontrada", 401);
             }
 
-            if ($pedido->terminado) {
-                throw new Exception("Pedido de canciones finalizado", 401);
-            }
-
-            $request['pedido'] = $pedido;
+            $request['sala'] = $sala;
             return $next($request);
         } catch (\Throwable $th) {
             return $this->ResponseThrow($th);

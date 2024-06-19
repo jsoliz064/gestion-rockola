@@ -36,6 +36,9 @@ class SalaDatatable extends DataTableComponent
             Column::make("Descripcion", "descripcion")
                 ->sortable()
                 ->searchable(),
+            Column::make("Token", "token")
+                ->sortable()
+                ->searchable(),
             Column::make('Acciones', 'id')
                 ->format(function ($value, $row, Column $column) {
                     return view('livewire.sala.sala-vista-button', [

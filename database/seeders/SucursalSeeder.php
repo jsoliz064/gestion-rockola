@@ -19,9 +19,9 @@ class SucursalSeeder extends Seeder
             'direccion' => "5to anillo",
         ]);
 
-        Sucursal::create([
-            'nombre' => "San Aurelio",
-            'direccion' => "4to anillo",
-        ]);
+        // Sucursal::create([
+        //     'nombre' => "San Aurelio",
+        //     'direccion' => "4to anillo",
+        // ]);
     }
 }
