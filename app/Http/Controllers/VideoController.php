@@ -150,4 +150,20 @@ class VideoController extends Controller
             return $this->ResponseThrow($th);
         }
     }
+
+    public function getLastVideo()
+    {
+        $video = ListaReproduccion::select(
+            'lista_reproduccion.id',
+            'videos.videoId',
+            'videos.title',
+            'videos.duration',
+            'mesas.nombre as mesa'
+        )
+            ->join('videos', 'videos.id', 'lista_reproduccion.video_id')
+            ->join('mesas', 'mesas.id', 'lista_reproduccion.mesa_id')
+            ->orderby('lista_reproduccion.created_at', 'asc')
+            ->first();
+        return response()->json($video, 200);
+    }
 }

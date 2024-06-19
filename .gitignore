@@ -14,3 +14,4 @@ yarn-error.log
 /.idea
 /.vscode
 /mysql_data
+/chromecast-server/node_modules

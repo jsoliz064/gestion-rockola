@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\VideoController;
 use App\Http\Middleware\AuthMiddleware;
+use App\Http\Middleware\AuthTvMiddleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,4 +21,8 @@ Route::middleware([AuthMiddleware::class])->prefix('rockola')->group(function ()
     Route::get('playlist', [VideoController::class, 'getSalaPlaylist']);
     Route::get('search', [VideoController::class, 'searchVideos']);
     Route::post('add-video', [VideoController::class, 'addVideo']);
+});
+
+Route::middleware([AuthTvMiddleware::class])->prefix('tvs')->group(function () {
+    Route::get('sala/last-video', [VideoController::class, 'getLastVideo']);
 });
