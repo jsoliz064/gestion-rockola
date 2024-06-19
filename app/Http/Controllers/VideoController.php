@@ -65,14 +65,17 @@ class VideoController extends Controller
 
             $savedVideos = [];
             foreach ($filteredVideos as $video) {
-                $savedVideos[] = Video::create([
-                    'videoId' => $video['id'],
-                    'title' => $video['snippet']['title'],
-                    'duration' => $video['contentDetails']['duration'],
-                    'thumbnails_default' => $video['snippet']['thumbnails']['default']['url'],
-                    'thumbnails_medium' => $video['snippet']['thumbnails']['medium']['url'],
-                    'thumbnails_high' => $video['snippet']['thumbnails']['high']['url']
-                ]);
+                $video = Video::where('videoId', $video['id'])->first();
+                if ($video == null) {
+                    $savedVideos[] = Video::create([
+                        'videoId' => $video['id'],
+                        'title' => $video['snippet']['title'],
+                        'duration' => $video['contentDetails']['duration'],
+                        'thumbnails_default' => $video['snippet']['thumbnails']['default']['url'],
+                        'thumbnails_medium' => $video['snippet']['thumbnails']['medium']['url'],
+                        'thumbnails_high' => $video['snippet']['thumbnails']['high']['url']
+                    ]);
+                }
             }
 
             return response()->json($savedVideos);
