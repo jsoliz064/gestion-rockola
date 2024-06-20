@@ -5,16 +5,22 @@
         >
             <div class="col-md-8">
                 <div class="search">
-                    <i class="fa fa-search"></i>
                     <input
                         type="text"
                         class="form-control"
                         placeholder="Ingrese el nombre de alguna canción"
                         v-model="query"
                         @input="filterOptions"
+                        ref="searchInput"
                     />
-                    <button class="btn btn-primary">Buscar</button>
-                    <ul v-if="query" class="options-list">
+                    <ul
+                        v-if="query"
+                        class="options-list"
+                        :style="{
+                            width: inputWidth + 'px',
+                            top: inputHeight + 'px',
+                        }"
+                    >
                         <li
                             v-for="option in filteredOptions"
                             :key="option.title"
@@ -42,6 +48,20 @@
                     </ul>
                 </div>
             </div>
+            <Modal title="Agregando cancion" ref="modal">
+                <div
+                    style="
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                    "
+                >
+                    <div class="spinner-border" role="status"></div>
+                    <span style="font-weight: bold; color: black"
+                        >Espere un momento por favor...</span
+                    >
+                </div>
+            </Modal>
         </div>
     </div>
 </template>
@@ -49,8 +69,11 @@
 <script>
 import Swal from "sweetalert2";
 import Service from "../helpers/services";
-
+import Modal from "../reusable/Modal.vue";
 export default {
+    components: {
+        Modal,
+    },
     props: {
         options: {
             type: Array,
@@ -61,9 +84,23 @@ export default {
         return {
             query: "",
             filteredOptions: [],
+            inputWidth: 0, // Ancho del input
+            inputHeight: 0, // Altura del input
         };
     },
+    mounted() {
+        this.updateInputDimensions();
+        window.addEventListener("resize", this.updateInputDimensions); // Actualizar dimensiones al redimensionar la ventana
+    },
+    beforeDestroy() {
+        window.removeEventListener("resize", this.updateInputDimensions);
+    },
     methods: {
+        updateInputDimensions() {
+            const input = this.$refs.searchInput;
+            this.inputWidth = input.offsetWidth;
+            this.inputHeight = input.offsetHeight;
+        },
         filterOptions() {
             if (this.query) {
                 const normalizedQuery = this.query
@@ -71,32 +108,45 @@ export default {
                     .normalize("NFD")
                     .replace(/[\u0300-\u036f]/g, ""); // Normaliza y elimina diacríticos
 
+                const queryWords = normalizedQuery.split(/\s+/); // Divide la consulta en palabras
+
                 this.filteredOptions = this.options.filter((option) => {
                     const normalizedTitle = option.title
                         .toLowerCase()
                         .normalize("NFD")
                         .replace(/[\u0300-\u036f]/g, ""); // Normaliza y elimina diacríticos
 
-                    return normalizedTitle.includes(normalizedQuery);
+                    // Verifica si todas las palabras de la consulta están contenidas en el título normalizado
+                    return queryWords.every((word) =>
+                        normalizedTitle.includes(word)
+                    );
                 });
             } else {
                 this.filteredOptions = [];
             }
         },
+
         selectOption(option) {
             this.query = option.title;
             this.filteredOptions = [];
         },
         showAlert(option) {
             Swal.fire({
-                title: "¿Estás seguro de agregar esta canción?",
+                title: "¿Estás seguro de agregar esta canción?:",
                 html: `
-          <img src="${option.thumbnails_medium}" alt="Thumbnail" style="width: 90%; height: 85%;">
-          <p>${option.title}</p>
-        `,
+                    <div class="custom-imgSong">
+                    <img src="${option.thumbnails_medium}" alt="Thumbnail" class="custom-thumbnail">
+                    <p class="custom-name">${option.title}</p>
+                    </div>
+                `,
                 showCancelButton: true,
                 cancelButtonText: "No",
                 confirmButtonText: "Sí",
+                confirmButtonColor: "#008000",
+                cancelButtonColor: "#d33",
+                customClass: {
+                    title: "custom-title",
+                },
             }).then((result) => {
                 if (result.isConfirmed) {
                     this.confirmAction(option);
@@ -117,9 +167,18 @@ export default {
             console.log("Acción cancelada");
         },
         async searchMore() {
+            this.openModal();
             const newVideos = await Service.searchVideos(this.query);
             console.log(newVideos);
             this.options.push(...newVideos);
+            this.closeModal();
+        },
+        openModal() {
+            this.$refs.modal.openModal();
+        },
+
+        closeModal() {
+            this.$refs.modal.closeModal();
         },
     },
 };
@@ -133,14 +192,15 @@ body {
 }
 
 .search {
-    position: relative;
+    display: flex;
     box-shadow: 0 0 40px rgba(51, 51, 51, 0.1);
+    position: relative;
 }
 
 .search input {
-    height: 60px;
-    text-indent: 25px;
+    height: 10vh;
     border: 2px solid #d6d4d4;
+    flex: 1;
 }
 
 .search input:focus {
@@ -155,11 +215,6 @@ body {
 }
 
 .search button {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    height: 50px;
-    width: 110px;
     background: blue;
 }
 
@@ -168,12 +223,11 @@ body {
     z-index: 1000;
     list-style-type: none;
     padding: 0;
-    margin: 10px 0 0;
+    margin: 0; /* Removemos el margen superior */
     background: white;
     box-shadow: 0 0 40px rgba(51, 51, 51, 0.1);
     border: 2px solid #d6d4d4;
     overflow-y: auto;
-    width: 100%;
     border-radius: 10px;
     max-height: 70vh;
 }

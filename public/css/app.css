@@ -11977,3 +11977,23 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+.custom-thumbnail {
+  width: 90%;
+  height: 65%;
+  border-radius: 8px;
+}
+
+.custom-title {
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.custom-name {
+  margin-top: 2px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  font-size: 1.1rem;
+}
