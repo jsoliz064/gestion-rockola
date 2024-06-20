@@ -23,6 +23,7 @@ Route::middleware([AuthMiddleware::class])->prefix('rockola')->group(function ()
     Route::post('add-video', [VideoController::class, 'addVideo']);
 });
 
-Route::middleware([AuthTvMiddleware::class])->prefix('tvs')->group(function () {
-    Route::get('sala/last-video', [VideoController::class, 'getLastVideo']);
+Route::middleware([AuthTvMiddleware::class])->prefix('sala')->group(function () {
+    Route::get('playlist/last-video', [VideoController::class, 'getLastVideo']);
+    Route::delete('playlist/{id}', [VideoController::class, 'deleteVideoPlaylist']);
 });

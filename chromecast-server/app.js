@@ -45,7 +45,7 @@ const openYouTubeVideo = (videoId) => {
 const getLastVideo = async () => {
     try {
         const response = await axios.get(
-            `${rockolaHost}/api/tvs/sala/last-video`,
+            `${rockolaHost}/api/sala/playlist/last-video`,
             {
                 headers: {
                     Authorization: salaToken,
@@ -56,8 +56,29 @@ const getLastVideo = async () => {
         return response.data;
     } catch (error) {
         const message = error.response.data || error.message;
-        console.error("Failed to fetch last video", message);
+        console.error("Last video not found", message);
         return null;
+    }
+};
+
+const deletePlaylistVideo = async (id) => {
+    try {
+        if (id) {
+            const response = await axios.delete(
+                `${rockolaHost}/api/sala/playlist/${id}`,
+                {
+                    headers: {
+                        Authorization: salaToken,
+                    },
+                }
+            );
+            console.log(response.data);
+            return true;
+        }
+    } catch (error) {
+        const message = error.response.data || error.message;
+        console.error("delete video error", message);
+        return false;
     }
 };
 
@@ -77,16 +98,14 @@ const playLastVideo = async (video) => {
             await openYouTubeVideo(video.videoId);
             const durationMs = parseDuration(video.duration);
             console.log(`Video duration: ${durationMs / 1000} seconds`);
-
-            setTimeout(() => {
+            setTimeout(async () => {
+                const res = await deletePlaylistVideo(video.id);
                 startDaemon();
             }, durationMs);
         } catch (error) {
             console.error("Error playing video:", error);
         }
     } else {
-        console.log("No new video found");
-        // Reinicia el daemon si no se encontró un nuevo video
         startDaemon();
     }
 };
@@ -99,7 +118,7 @@ const startDaemon = () => {
             clearInterval(daemonInterval);
             await playLastVideo(video);
         }
-    }, 2000); // Verifica cada 2 segundos
+    }, 2000); //2s
 };
 
 app.post("/play-video", async (req, res) => {
