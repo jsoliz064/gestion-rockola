@@ -6,7 +6,7 @@
 
 	--hue-color: 230;
 	/*===== Colores =====*/
-	--first-color: #153663;
+	--first-color: #cc2f2f;
 	--first-color-dark: hsl(0, 43%, 53%);
 	--first-color-light: #a49eaca8;
 	--first-color-lighten: #f2f2f28c;
@@ -36,7 +36,7 @@ body {
 	font-family: var(--body-font);
 	font-size: var(--normal-font-size);
 	color: var(--first-color-dark);
-	background: linear-gradient(90deg, #3070c4, #153663);
+	background: linear-gradient(90deg, #cc2f2f, #882121);
 }
 
 

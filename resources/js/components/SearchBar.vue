@@ -1,44 +1,20 @@
 <template>
-    <div class="container" style="padding-top: 20px; position: relative">
-        <div
-            class="row height d-flex justify-content-center align-items-center"
-        >
+    <div class="container" style="position: relative">
+        <div class="row height d-flex justify-content-center align-items-center">
             <div class="col-md-8">
                 <div class="search">
-                    <input
-                        type="text"
-                        class="form-control"
-                        placeholder="Ingrese el nombre de alguna canción"
-                        v-model="query"
-                        @input="filterOptions"
-                        ref="searchInput"
-                    />
-                    <ul
-                        v-if="query"
-                        class="options-list"
-                        :style="{
+                    <input type="text" class="form-control" placeholder="Ingrese el nombre de la cancion o artista"
+                        v-model="query" @input="filterOptions" ref="searchInput" />
+                    <ul v-if="query" class="options-list" :style="{
                             width: inputWidth + 'px',
                             top: inputHeight + 'px',
-                        }"
-                    >
-                        <li
-                            v-for="option in filteredOptions"
-                            :key="option.title"
-                            @click="showAlert(option)"
-                        >
-                            <img
-                                :src="option.thumbnails_default"
-                                alt="Video Thumbnail"
-                                class="img-thumbnail mr-3"
-                            />
+                        }">
+                        <li v-for="option in filteredOptions" :key="option.title" @click="showAlert(option)">
+                            <img :src="option.thumbnails_default" alt="Video Thumbnail" class="img-thumbnail mr-3" />
                             {{ option.title }}
                         </li>
                         <div style="display: flex; justify-content: center">
-                            <li
-                                class="no-results"
-                                style="width: 100%; text-align: center"
-                                @click="searchMore"
-                            >
+                            <li class="no-results" style="width: 100%; text-align: center" @click="searchMore">
                                 <label>
                                     Buscar más resultados de <b>{{ query }}</b>
                                 </label>
@@ -48,17 +24,13 @@
                 </div>
             </div>
             <Modal title="Agregando cancion" ref="modal">
-                <div
-                    style="
+                <div style="
                         display: flex;
                         flex-direction: column;
                         align-items: center;
-                    "
-                >
+                    ">
                     <div class="spinner-border" role="status"></div>
-                    <span style="font-weight: bold; color: black"
-                        >Espere un momento por favor...</span
-                    >
+                    <span style="font-weight: bold; color: black">Espere un momento por favor...</span>
                 </div>
             </Modal>
         </div>
@@ -215,6 +187,7 @@ export default {
 
 <style scoped>
 @import url('/css/custom.css');
+
 body {
     background-color: #eee;
     font-family: "Poppins", sans-serif;
@@ -253,7 +226,8 @@ body {
     z-index: 1000;
     list-style-type: none;
     padding: 0;
-    margin: 0; /* Removemos el margen superior */
+    margin: 0;
+    /* Removemos el margen superior */
     background: white;
     box-shadow: 0 0 40px rgba(51, 51, 51, 0.1);
     border: 2px solid #d6d4d4;

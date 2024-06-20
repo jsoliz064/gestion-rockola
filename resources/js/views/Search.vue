@@ -1,14 +1,15 @@
 <template>
     <div class="container">
         <div>
-            <search-bar
-                :options="videoOptions"
-                @addVideo="loadPlaylist"
-            ></search-bar>
+            <div class="row mt-4">
+                <div class="col d-flex align-items-center justify-content-center">
+                    <h4>Busca la cancion que desees</h4>
+                </div>
+            </div>
+            <search-bar :options="videoOptions" @addVideo="loadPlaylist"></search-bar>
             <hr />
-            <div
-                class="row height d-flex justify-content-center align-items-center"
-            >
+            <h5>Lista de reproduccion actual:</h5>
+            <div class="row height d-flex justify-content-center align-items-center">
                 <video-list :videos="videos"></video-list>
             </div>
         </div>
