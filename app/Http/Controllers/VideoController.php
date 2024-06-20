@@ -165,15 +165,35 @@ class VideoController extends Controller
             ->join('videos', 'videos.id', 'lista_reproduccion.video_id')
             ->join('mesas', 'mesas.id', 'lista_reproduccion.mesa_id')
             ->where('lista_reproduccion.sala_id', $sala->id)
+            ->where('lista_reproduccion.reproducido', false)
             ->orderby('lista_reproduccion.created_at', 'asc')
             ->first();
 
         if ($video == null) {
-            return response()->json(['message' => "playlist empty"], 400);
+            return response()->json(['message' => "playlist is empty"], 400);
         }
 
-        $videoSend = $video;
-        $video->delete();
-        return response()->json($videoSend, 200);
+        $video->update([
+            'reproducido' => true
+        ]);
+        return response()->json($video, 200);
+    }
+
+    public function deleteVideoPlaylist(Request $request, $playlist_id)
+    {
+        $sala = $request->sala;
+
+        $playlistVideo = ListaReproduccion::where('id', $playlist_id)
+            ->where('lista_reproduccion.sala_id', $sala->id)
+            ->orderby('lista_reproduccion.created_at', 'asc')
+            ->first();
+
+        if ($playlistVideo == null) {
+            return response()->json(['message' => "playlist index not found"], 400);
+        }
+
+        $playlistVideo->delete();
+
+        return response()->json(["message" => "playlist index {$playlist_id} deleted"], 200);
     }
 }
