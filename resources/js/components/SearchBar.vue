@@ -30,7 +30,6 @@
                                 :src="option.thumbnails_default"
                                 alt="Video Thumbnail"
                                 class="img-thumbnail mr-3"
-                                style="width: 100px; height: 56px"
                             />
                             {{ option.title }}
                         </li>
@@ -215,6 +214,7 @@ export default {
 </script>
 
 <style scoped>
+@import url('/css/custom.css');
 body {
     background-color: #eee;
     font-family: "Poppins", sans-serif;
@@ -278,5 +278,7 @@ body {
 
 .img-thumbnail {
     margin-right: 10px;
+    max-width: 100px;
+    max-height: 56px;
 }
 </style>

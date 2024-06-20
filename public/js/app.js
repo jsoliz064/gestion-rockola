@@ -5186,7 +5186,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -5477,6 +5476,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -10617,11 +10625,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 /* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_public_css_custom_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! -!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../public/css/custom.css */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./public/css/custom.css");
 // Imports
 
+
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+___CSS_LOADER_EXPORT___.i(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_public_css_custom_css__WEBPACK_IMPORTED_MODULE_1__["default"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nbody[data-v-6849e9f0] {\r\n    background-color: #eee;\r\n    font-family: \"Poppins\", sans-serif;\r\n    font-weight: 300;\n}\n.search[data-v-6849e9f0] {\r\n    display: flex;\r\n    box-shadow: 0 0 40px rgba(51, 51, 51, 0.1);\r\n    position: relative;\n}\n.search input[data-v-6849e9f0] {\r\n    height: 10vh;\r\n    border: 2px solid #d6d4d4;\r\n    flex: 1;\n}\n.search input[data-v-6849e9f0]:focus {\r\n    box-shadow: none;\r\n    border: 2px solid blue;\n}\n.search .fa-search[data-v-6849e9f0] {\r\n    position: absolute;\r\n    top: 20px;\r\n    left: 16px;\n}\n.search button[data-v-6849e9f0] {\r\n    background: blue;\n}\n.options-list[data-v-6849e9f0] {\r\n    position: absolute;\r\n    z-index: 1000;\r\n    list-style-type: none;\r\n    padding: 0;\r\n    margin: 0; /* Removemos el margen superior */\r\n    background: white;\r\n    box-shadow: 0 0 40px rgba(51, 51, 51, 0.1);\r\n    border: 2px solid #d6d4d4;\r\n    overflow-y: auto;\r\n    border-radius: 10px;\r\n    max-height: 70vh;\n}\n.options-list li[data-v-6849e9f0] {\r\n    padding: 10px;\r\n    cursor: pointer;\r\n    border-bottom: 1px solid #d6d4d4;\n}\n.options-list li.no-border[data-v-6849e9f0] {\r\n    border-bottom: none;\n}\n.options-list li[data-v-6849e9f0]:hover {\r\n    background: #f0f0f0;\n}\n.img-thumbnail[data-v-6849e9f0] {\r\n    margin-right: 10px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nbody[data-v-6849e9f0] {\r\n    background-color: #eee;\r\n    font-family: \"Poppins\", sans-serif;\r\n    font-weight: 300;\n}\n.search[data-v-6849e9f0] {\r\n    display: flex;\r\n    box-shadow: 0 0 40px rgba(51, 51, 51, 0.1);\r\n    position: relative;\n}\n.search input[data-v-6849e9f0] {\r\n    height: 10vh;\r\n    border: 2px solid #d6d4d4;\r\n    flex: 1;\n}\n.search input[data-v-6849e9f0]:focus {\r\n    box-shadow: none;\r\n    border: 2px solid blue;\n}\n.search .fa-search[data-v-6849e9f0] {\r\n    position: absolute;\r\n    top: 20px;\r\n    left: 16px;\n}\n.search button[data-v-6849e9f0] {\r\n    background: blue;\n}\n.options-list[data-v-6849e9f0] {\r\n    position: absolute;\r\n    z-index: 1000;\r\n    list-style-type: none;\r\n    padding: 0;\r\n    margin: 0; /* Removemos el margen superior */\r\n    background: white;\r\n    box-shadow: 0 0 40px rgba(51, 51, 51, 0.1);\r\n    border: 2px solid #d6d4d4;\r\n    overflow-y: auto;\r\n    border-radius: 10px;\r\n    max-height: 70vh;\n}\n.options-list li[data-v-6849e9f0] {\r\n    padding: 10px;\r\n    cursor: pointer;\r\n    border-bottom: 1px solid #d6d4d4;\n}\n.options-list li.no-border[data-v-6849e9f0] {\r\n    border-bottom: none;\n}\n.options-list li[data-v-6849e9f0]:hover {\r\n    background: #f0f0f0;\n}\n.img-thumbnail[data-v-6849e9f0] {\r\n    margin-right: 10px;\r\n    max-width: 100px;\r\n    max-height: 56px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -10645,7 +10656,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.video-list[data-v-6e07a95e] {\r\n  width: 100%;\r\n  height: 100%;\r\n  overflow-y: auto;\n}\n.img-thumbnail[data-v-6e07a95e] {\r\n  margin-right: 10px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.video-list[data-v-6e07a95e] {\r\n  width: 100%;\r\n  height: 82vh;\r\n  overflow-y: auto;\n}\n.img-thumbnail[data-v-6e07a95e] {\r\n  margin-right: 10px;\n}\n.list-group-item[data-v-6e07a95e] {\r\n  border-radius: 10px; /* Ajusta el valor para el redondeo deseado */\n}\n.custom-first-item[data-v-6e07a95e] {\r\n  background-color: #d0e7ff; /* Azul claro */\r\n  border: 2px solid #007bff; /* Borde azul oscuro */\r\n  font-weight: bold; /* Ejemplo de texto en negrita */\r\n   border-radius: 10px; /* Ajusta el valor para el redondeo deseado */\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -10694,6 +10705,30 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, "\n.container[data-v-6dad4cf1] {\r\n  padding: 20px;\r\n  height: 100vh;\r\n  width: 100vw;\n}\n.row[data-v-6dad4cf1] {\r\n  height: 100%;\n}\r\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./public/css/custom.css":
+/*!*********************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./public/css/custom.css ***!
+  \*********************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".custom-thumbnail {\r\n    width: 90%;\r\n    height: 85%;\r\n    border-radius: 8px;\r\n  }\r\n  \r\n  .custom-title {\r\n    font-weight: bold;\r\n    color: #333;\r\n    text-align: center;\r\n  }\r\n  ", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -34059,7 +34094,6 @@ var render = function () {
                           [
                             _c("img", {
                               staticClass: "img-thumbnail mr-3",
-                              staticStyle: { width: "100px", height: "56px" },
                               attrs: {
                                 src: option.thumbnails_default,
                                 alt: "Video Thumbnail",
@@ -34236,13 +34270,15 @@ var render = function () {
     _c(
       "ul",
       { staticClass: "list-group" },
-      _vm._l(_vm.videos, function (video) {
+      _vm._l(_vm.videos, function (video, index) {
         return _c(
           "li",
           {
             key: video.id,
-            staticClass:
+            class: [
               "list-group-item d-flex align-items-center overflow-auto shadow",
+              { "custom-first-item": index === 0 },
+            ],
             staticStyle: { cursor: "pointer" },
             on: {
               click: function ($event) {
@@ -34253,7 +34289,7 @@ var render = function () {
           [
             _c("img", {
               staticClass: "img-thumbnail mr-3",
-              staticStyle: { width: "100px", height: "56px" },
+              staticStyle: { "max-width": "120px", "max-height": "56px" },
               attrs: { src: video.thumbnails_default, alt: "Video Thumbnail" },
             }),
             _vm._v(" "),

@@ -1,0 +1,12 @@
+.custom-thumbnail {
+    width: 90%;
+    height: 85%;
+    border-radius: 8px;
+  }
+  
+  .custom-title {
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+  }
+  
