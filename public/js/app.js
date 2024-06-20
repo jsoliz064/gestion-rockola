@@ -5206,13 +5206,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       query: "",
       filteredOptions: [],
       inputWidth: 0,
-      // Ancho del input
-      inputHeight: 0 // Altura del input
+      inputHeight: 0
     };
   },
   mounted: function mounted() {
     this.updateInputDimensions();
-    window.addEventListener("resize", this.updateInputDimensions); // Actualizar dimensiones al redimensionar la ventana
+    window.addEventListener("resize", this.updateInputDimensions);
   },
   beforeDestroy: function beforeDestroy() {
     window.removeEventListener("resize", this.updateInputDimensions);
@@ -5225,14 +5224,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     filterOptions: function filterOptions() {
       if (this.query) {
-        var normalizedQuery = this.query.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""); // Normaliza y elimina diacríticos
+        var normalizeString = function normalizeString(str) {
+          return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^\w\s]/gi, "");
+        }; // Normaliza y elimina diacríticos y caracteres especiales
 
+        var normalizedQuery = normalizeString(this.query);
         var queryWords = normalizedQuery.split(/\s+/); // Divide la consulta en palabras
 
         this.filteredOptions = this.options.filter(function (option) {
-          var normalizedTitle = option.title.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""); // Normaliza y elimina diacríticos
-
-          // Verifica si todas las palabras de la consulta están contenidas en el título normalizado
+          var normalizedTitle = normalizeString(option.title);
+          // Verifica si todas las palabras de la consulta están contenidas en el conjunto de palabras del título
           return queryWords.every(function (word) {
             return normalizedTitle.includes(word);
           });
@@ -5272,7 +5273,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
-              // Acción a tomar cuando se confirma
               console.log("Id:", option.videoId);
               _context.next = 3;
               return _helpers_services__WEBPACK_IMPORTED_MODULE_1__["default"].addVideo(option.videoId);
@@ -5303,8 +5303,40 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               return _helpers_services__WEBPACK_IMPORTED_MODULE_1__["default"].searchVideos(_this3.query);
             case 3:
               newVideos = _context2.sent;
-              console.log(newVideos);
+              //console.log(newVideos);
+
+              // const newVideos = [
+              //     {
+              //         id: 1,
+              //         videoId: "TJ01FIdguUs",
+              //         title: "Reik, Carin Leon - El Correcto (Video Oficial)",
+              //         duration: "PT3M22S",
+              //         thumbnails_default:
+              //             "https://i.ytimg.com/vi/DI71FIdguUs/default.jpg",
+              //         thumbnails_medium:
+              //             "https://i.ytimg.com/vi/DI71FIdguUs/mqdefault.jpg",
+              //         thumbnails_heigh:
+              //             "https://i.ytimg.com/vi/DI71FIdguUs/hqdefault.jpg",
+              //         created_at: "2024-06-19T23:04:20.000000Z",
+              //         updated_at: "2024-06-19T23:04:20.000000Z",
+              //     },
+              //     {
+              //         id: 2,
+              //         videoId: "Ntab-Jp3Ak4",
+              //         title: "Reik - Yo Quisiera (Video)",
+              //         duration: "PT3M22S",
+              //         thumbnails_default:
+              //             "https://i.ytimg.com/vi/Dcow-Jp3Ak4/default.jpg",
+              //         thumbnails_medium:
+              //             "https://i.ytimg.com/vi/Dcow-Jp3Ak4/mqdefault.jpg",
+              //         thumbnails_heigh:
+              //             "https://i.ytimg.com/vi/Dcow-Jp3Ak4/hqdefault.jpg",
+              //         created_at: "2024-06-19T23:04:20.000000Z",
+              //         updated_at: "2024-06-19T23:04:20.000000Z",
+              //     },
+              // ];
               (_this3$options = _this3.options).push.apply(_this3$options, _toConsumableArray(newVideos));
+              _this3.filterOptions();
               _this3.closeModal();
             case 7:
             case "end":

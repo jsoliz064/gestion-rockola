@@ -84,13 +84,13 @@ export default {
         return {
             query: "",
             filteredOptions: [],
-            inputWidth: 0, // Ancho del input
-            inputHeight: 0, // Altura del input
+            inputWidth: 0,
+            inputHeight: 0,
         };
     },
     mounted() {
         this.updateInputDimensions();
-        window.addEventListener("resize", this.updateInputDimensions); // Actualizar dimensiones al redimensionar la ventana
+        window.addEventListener("resize", this.updateInputDimensions);
     },
     beforeDestroy() {
         window.removeEventListener("resize", this.updateInputDimensions);
@@ -103,20 +103,20 @@ export default {
         },
         filterOptions() {
             if (this.query) {
-                const normalizedQuery = this.query
-                    .toLowerCase()
-                    .normalize("NFD")
-                    .replace(/[\u0300-\u036f]/g, ""); // Normaliza y elimina diacríticos
+                const normalizeString = (str) =>
+                    str
+                        .toLowerCase()
+                        .normalize("NFD")
+                        .replace(/[\u0300-\u036f]/g, "")
+                        .replace(/[^\w\s]/gi, ""); // Normaliza y elimina diacríticos y caracteres especiales
+
+                const normalizedQuery = normalizeString(this.query);
 
                 const queryWords = normalizedQuery.split(/\s+/); // Divide la consulta en palabras
 
                 this.filteredOptions = this.options.filter((option) => {
-                    const normalizedTitle = option.title
-                        .toLowerCase()
-                        .normalize("NFD")
-                        .replace(/[\u0300-\u036f]/g, ""); // Normaliza y elimina diacríticos
-
-                    // Verifica si todas las palabras de la consulta están contenidas en el título normalizado
+                    const normalizedTitle = normalizeString(option.title);
+                    // Verifica si todas las palabras de la consulta están contenidas en el conjunto de palabras del título
                     return queryWords.every((word) =>
                         normalizedTitle.includes(word)
                     );
@@ -125,7 +125,6 @@ export default {
                 this.filteredOptions = [];
             }
         },
-
         selectOption(option) {
             this.query = option.title;
             this.filteredOptions = [];
@@ -156,7 +155,6 @@ export default {
             });
         },
         async confirmAction(option) {
-            // Acción a tomar cuando se confirma
             console.log("Id:", option.videoId);
             await Service.addVideo(option.videoId);
             this.query = "";
@@ -169,8 +167,40 @@ export default {
         async searchMore() {
             this.openModal();
             const newVideos = await Service.searchVideos(this.query);
-            console.log(newVideos);
+            //console.log(newVideos);
+
+            // const newVideos = [
+            //     {
+            //         id: 1,
+            //         videoId: "TJ01FIdguUs",
+            //         title: "Reik, Carin Leon - El Correcto (Video Oficial)",
+            //         duration: "PT3M22S",
+            //         thumbnails_default:
+            //             "https://i.ytimg.com/vi/DI71FIdguUs/default.jpg",
+            //         thumbnails_medium:
+            //             "https://i.ytimg.com/vi/DI71FIdguUs/mqdefault.jpg",
+            //         thumbnails_heigh:
+            //             "https://i.ytimg.com/vi/DI71FIdguUs/hqdefault.jpg",
+            //         created_at: "2024-06-19T23:04:20.000000Z",
+            //         updated_at: "2024-06-19T23:04:20.000000Z",
+            //     },
+            //     {
+            //         id: 2,
+            //         videoId: "Ntab-Jp3Ak4",
+            //         title: "Reik - Yo Quisiera (Video)",
+            //         duration: "PT3M22S",
+            //         thumbnails_default:
+            //             "https://i.ytimg.com/vi/Dcow-Jp3Ak4/default.jpg",
+            //         thumbnails_medium:
+            //             "https://i.ytimg.com/vi/Dcow-Jp3Ak4/mqdefault.jpg",
+            //         thumbnails_heigh:
+            //             "https://i.ytimg.com/vi/Dcow-Jp3Ak4/hqdefault.jpg",
+            //         created_at: "2024-06-19T23:04:20.000000Z",
+            //         updated_at: "2024-06-19T23:04:20.000000Z",
+            //     },
+            // ];
             this.options.push(...newVideos);
+            this.filterOptions();
             this.closeModal();
         },
         openModal() {
