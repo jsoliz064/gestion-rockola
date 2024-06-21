@@ -39,11 +39,15 @@ DB_PASSWORD=
 5. Ejecute Comandos Adicionales del Contenedor de Laravel
 
 ```
-    composer install
+    docker exec gestion-rockola composer install
+
+    docker exec gestion-rockola php artisan key:generate
+
+    docker exec gestion-rockola php artisan storage:link
     
     docker exec gestion-rockola chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
     docker exec gestion-rockola chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
-    php artisan optimize
+    docker exec gestion-rockola php artisan optimize
 ```

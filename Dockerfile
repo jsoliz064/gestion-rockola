@@ -27,6 +27,11 @@ RUN echo "post_size_max = 100M" > /usr/local/etc/php/conf.d/post-size-max.ini
 # Instalamos Composer globalmente
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+# Instalamos Node.js y npm
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
+    && apt-get install -y nodejs \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+    
 # Exponemos el puerto 80 para acceder a la aplicación desde el host
 EXPOSE 80
 
