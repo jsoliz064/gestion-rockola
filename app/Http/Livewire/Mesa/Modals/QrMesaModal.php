@@ -89,6 +89,7 @@ class QrMesaModal extends Component
             ->setBackgroundColor(new Color(255, 255, 255));
 
         $logoPath = public_path('img/logoRockola.jpg');
+        dd($logoPath);
         $logo = Logo::create($logoPath)
             ->setResizeToWidth(50);
 
