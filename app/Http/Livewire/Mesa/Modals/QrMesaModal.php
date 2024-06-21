@@ -88,14 +88,15 @@ class QrMesaModal extends Component
             ->setForegroundColor(new Color(0, 0, 0))
             ->setBackgroundColor(new Color(255, 255, 255));
 
-        $logoPath = public_path('img/logoRockola.jpg');
+        // $logoPath = public_path('img/logoRockola.jpg');
 
         // $logoPath = config('app.MY_HOST') . config('app.asset_url') . "/img/logoRockola.jpg";
-        $logo = Logo::create($logoPath)
-            ->setResizeToWidth(50);
+        // $logo = Logo::create($logoPath)
+        //     ->setResizeToWidth(50);
 
         $writer = new PngWriter();
-        $result = $writer->write($qrCode, $logo);
+        // $result = $writer->write($qrCode, $logo);
+        $result = $writer->write($qrCode);
         $image = $result->getString();
         $imageData = base64_encode($image);
         $image = 'data:image/png;base64,' . $imageData;
