@@ -17,16 +17,16 @@ class RockolaController extends Controller
         try {
             $mesa = Mesa::where('token', $token)->first();
             if ($mesa == null) {
-                abort(404);
+                return view('common.abort');
             }
 
             $pedido = $mesa->Pedido();
             if ($pedido == null) {
-                abort(404);
+                return view('common.abort');
             }
 
             if ($pedido->invitacion_url) {
-                abort(404);
+                return view('common.abort');
             }
 
             $jwt = $this->encodeJWT($pedido->toArray());
@@ -37,7 +37,7 @@ class RockolaController extends Controller
             ]);
             return redirect()->route('rockola.mesa.search', $jwt);
         } catch (\Throwable $th) {
-            abort(404, $th->getMessage());
+            return view('common.abort');
         }
     }
 
@@ -47,11 +47,11 @@ class RockolaController extends Controller
             $pedidoArray = $this->decodeJWT($token);
             $pedido = Pedido::find($pedidoArray->id);
             if ($pedido->terminado) {
-                abort(404);
+                return view('common.abort');
             }
             return view('cruds.rockola.search', compact('token'));
         } catch (\Throwable $th) {
-            abort(404, $th->getMessage());
+            return view('common.abort');
         }
     }
 }

@@ -9,7 +9,7 @@
             <search-bar :options="videoOptions" @addVideo="loadPlaylist"></search-bar>
             <hr />
             <h5>Lista de reproduccion actual:</h5>
-            <div class="row height d-flex justify-content-center align-items-center">
+            <div class="row height d-flex justify-content-center align-items-center; height:500px">
                 <video-list :videos="videos"></video-list>
             </div>
         </div>

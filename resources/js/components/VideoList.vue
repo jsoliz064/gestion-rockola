@@ -4,7 +4,7 @@
       <li
         v-for="(video, index) in videos"
         :key="video.id"
-        :class="['list-group-item d-flex align-items-center overflow-auto shadow', { 'custom-first-item': index === 0 }]"
+        :class="['list-group-item d-flex align-items-center shadow', { 'custom-first-item': index === 0 }]"
         @click="selectVideo(video)"
         style="cursor: pointer"
       >
@@ -12,7 +12,6 @@
           :src="video.thumbnails_default"
           alt="Video Thumbnail"
           class="img-thumbnail mr-3"
-          style="max-width: 120px; max-height: 56px"
         />
         <span>{{ video.title }}</span>
       </li>
@@ -39,23 +38,23 @@ export default {
 
 <style scoped>
 .video-list {
-  width: 100%;
-  height: 82vh;
+  max-height: 70vh;
   overflow-y: auto;
 }
 
 .img-thumbnail {
   margin-right: 10px;
+  max-width: 120px;
+  max-height: 56px;
 }
 
 .list-group-item {
-  border-radius: 10px; /* Ajusta el valor para el redondeo deseado */
+  border-radius: 10px;
 }
 
 .custom-first-item {
-  background-color: #d0e7ff; /* Azul claro */
-  border: 2px solid #007bff; /* Borde azul oscuro */
-  font-weight: bold; /* Ejemplo de texto en negrita */
-   border-radius: 10px; /* Ajusta el valor para el redondeo deseado */
+  background-color: #d0e7ff;
+  border: 2px solid #007bff;
+  font-weight: bold;
 }
 </style>
