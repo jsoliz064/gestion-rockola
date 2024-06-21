@@ -90,7 +90,6 @@ class QrMesaModal extends Component
 
         // $logoPath = public_path('img/logoRockola.jpg');
         $logoPath = config('app.MY_HOST') . config('app.asset_url') . "/img/logoRockola.jpg";
-        dd($logoPath);
         // Añadir depuración
         $logo = Logo::create($logoPath)
             ->setResizeToWidth(50);
