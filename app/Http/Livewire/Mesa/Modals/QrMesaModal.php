@@ -66,7 +66,7 @@ class QrMesaModal extends Component
                 'sala_id' => $mesa->Sala->id,
                 'sucursal_id' => $mesa->Sala->Sucursal->id,
             ]);
-            
+
             return $pedido;
         });
         $this->emit('updateMesaTable');
@@ -89,7 +89,10 @@ class QrMesaModal extends Component
             ->setBackgroundColor(new Color(255, 255, 255));
 
         $logoPath = public_path('img/logoRockola.jpg');
-        dd($logoPath);
+        // Añadir depuración
+        if (!file_exists($logoPath)) {
+            throw new \Exception("El archivo del logo no existe: {$logoPath}");
+        }
         $logo = Logo::create($logoPath)
             ->setResizeToWidth(50);
 
