@@ -88,11 +88,10 @@ class QrMesaModal extends Component
             ->setForegroundColor(new Color(0, 0, 0))
             ->setBackgroundColor(new Color(255, 255, 255));
 
-        $logoPath = public_path('img/logoRockola.jpg');
+        // $logoPath = public_path('img/logoRockola.jpg');
+        $logoPath = config('app.MY_HOST') . config('app.ASSET_URL') . "/img/logoRockola.jpg";
+        dd($logoPath);
         // Añadir depuración
-        if (!file_exists($logoPath)) {
-            throw new \Exception("El archivo del logo no existe: {$logoPath}");
-        }
         $logo = Logo::create($logoPath)
             ->setResizeToWidth(50);
 
