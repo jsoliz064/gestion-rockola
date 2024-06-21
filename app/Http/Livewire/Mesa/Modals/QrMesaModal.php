@@ -88,9 +88,7 @@ class QrMesaModal extends Component
             ->setForegroundColor(new Color(0, 0, 0))
             ->setBackgroundColor(new Color(255, 255, 255));
 
-        // $logoPath = public_path('img/logoRockola.jpg');
-        $logoPath = realpath(public_path('img/logoRockola.jpg'));
-        $logoPath = __DIR__ . '/img/logoRockola.jpg';
+        $logoPath = public_path('img/logoRockola.jpg');
 
         // $logoPath = config('app.MY_HOST') . config('app.asset_url') . "/img/logoRockola.jpg";
         $logo = Logo::create($logoPath)
