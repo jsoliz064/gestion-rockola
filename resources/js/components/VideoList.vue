@@ -4,10 +4,14 @@
       <li
         v-for="(video, index) in videos"
         :key="video.id"
-        :class="['list-group-item d-flex align-items-center shadow', { 'custom-first-item': index === 0 }]"
+         :class="[
+          'list-group-item d-flex align-items-center shadow',
+          { 'custom-first-item': video.reproducido === 1 }
+        ]"
         @click="selectVideo(video)"
         style="cursor: pointer"
       >
+        <span class="video-index">{{ index + 1 }}</span>
         <img
           :src="video.thumbnails_default"
           alt="Video Thumbnail"
@@ -40,6 +44,11 @@ export default {
 .video-list {
   max-height: 70vh;
   overflow-y: auto;
+}
+
+.video-index {
+  margin-right: 10px;
+  font-weight: bold;
 }
 
 .img-thumbnail {

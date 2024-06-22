@@ -8,7 +8,7 @@
                     <input
                         type="text"
                         class="form-control"
-                        placeholder="Ingrese el nombre de la cancion o artista"
+                        placeholder="Ingrese el nombre de la canción o artista"
                         v-model="query"
                         @input="filterOptions"
                         ref="searchInput"
@@ -39,7 +39,8 @@
                                 @click="searchMore"
                             >
                                 <label style="color: white">
-                                    Buscar más resultados de: <b style="font-size:1rem">{{ query }}</b>
+                                    Buscar más resultados de:
+                                    <b style="font-size: 1rem">{{ query }}</b>
                                 </label>
                             </li>
                         </div>
@@ -129,7 +130,7 @@ export default {
         },
         showAlert(option) {
             Swal.fire({
-                title: "¿Estás seguro de agregar esta canción?:",
+                title: "¿Estás seguro de agregar esta canción?",
                 html: `
                     <div class="custom-imgSong">
                     <img src="${option.thumbnails_medium}" alt="Thumbnail" class="custom-thumbnail">
@@ -153,60 +154,38 @@ export default {
             });
         },
         async confirmAction(option) {
-            console.log("Id:", option.videoId);
-            await Service.addVideo(option.videoId);
-            this.query = "";
-            this.$emit("addVideo");
-        },
-        cancelAction() {
-            // Acción a tomar cuando se cancela
-            console.log("Acción cancelada");
+            //console.log("Id:", option.videoId);
+            try {
+                await Service.addVideo(option.videoId);
+                this.query = "";
+                this.$emit("addVideo");
+            } catch (error) {
+                this.showToast();
+            }
         },
         async searchMore() {
             this.openModal();
-            const newVideos = await Service.searchVideos(this.query);
-            //console.log(newVideos);
-
-            // const newVideos = [
-            //     {
-            //         id: 1,
-            //         videoId: "TJ01FIdguUs",
-            //         title: "Reik, Carin Leon - El Correcto (Video Oficial)",
-            //         duration: "PT3M22S",
-            //         thumbnails_default:
-            //             "https://i.ytimg.com/vi/DI71FIdguUs/default.jpg",
-            //         thumbnails_medium:
-            //             "https://i.ytimg.com/vi/DI71FIdguUs/mqdefault.jpg",
-            //         thumbnails_heigh:
-            //             "https://i.ytimg.com/vi/DI71FIdguUs/hqdefault.jpg",
-            //         created_at: "2024-06-19T23:04:20.000000Z",
-            //         updated_at: "2024-06-19T23:04:20.000000Z",
-            //     },
-            //     {
-            //         id: 2,
-            //         videoId: "Ntab-Jp3Ak4",
-            //         title: "Reik - Yo Quisiera (Video)",
-            //         duration: "PT3M22S",
-            //         thumbnails_default:
-            //             "https://i.ytimg.com/vi/Dcow-Jp3Ak4/default.jpg",
-            //         thumbnails_medium:
-            //             "https://i.ytimg.com/vi/Dcow-Jp3Ak4/mqdefault.jpg",
-            //         thumbnails_heigh:
-            //             "https://i.ytimg.com/vi/Dcow-Jp3Ak4/hqdefault.jpg",
-            //         created_at: "2024-06-19T23:04:20.000000Z",
-            //         updated_at: "2024-06-19T23:04:20.000000Z",
-            //     },
-            // ];
-            this.options.push(...newVideos);
-            this.filterOptions();
-            this.closeModal();
+            try {
+                const newVideos = await Service.searchVideos(this.query);
+                this.options.push(...newVideos);
+                this.filterOptions();
+            } catch (error) {
+                this.showToast();
+            } finally {
+                this.closeModal();
+            }
         },
         openModal() {
             this.$refs.modal.openModal();
         },
-
         closeModal() {
             this.$refs.modal.closeModal();
+        },
+        showToast() {
+            this.$toast.error("Error al solicitar el servicio", {
+                position: "top-right",
+                timeout: 5000,
+            });
         },
     },
 };

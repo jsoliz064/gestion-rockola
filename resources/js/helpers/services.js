@@ -43,10 +43,10 @@ async function getAllVideos() {
                 Authorization: token,
             },
         });
-        console.log("reponse:", response);
+        //console.log("reponse:", response);
         return response.data;
     } catch (error) {
-        console.log("error: ", error);
+        //console.log("error: ", error);
         throw error;
     }
 }
@@ -62,10 +62,10 @@ async function getSalaPlaylist() {
                 Authorization: token,
             },
         });
-        console.log("reponse:", response);
+        //console.log("reponse:", response);
         return response.data;
     } catch (error) {
-        console.log("error: ", error);
+        //console.log("error: ", error);
         throw error;
     }
 }
@@ -87,10 +87,10 @@ async function addVideo(videoId) {
                 },
             }
         );
-        console.log("reponse:", response);
+        //console.log("reponse:", response);
         return response.data;
     } catch (error) {
-        console.log("error: ", error);
+        //console.log("error: ", error);
         throw error;
     }
 }
@@ -109,10 +109,10 @@ async function searchVideos(query) {
                 },
             }
         );
-        console.log("reponse:", response);
+        //console.log("reponse:", response);
         return response.data;
     } catch (error) {
-        console.log("error: ", error);
+        //console.log("error: ", error);
         throw error;
     }
 }
