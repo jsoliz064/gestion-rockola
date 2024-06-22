@@ -1,6 +1,6 @@
 @extends('layouts.nav')
 
-@section('title','Rockola Digital')
+@section('title', 'Rockola Digital')
 
 @section('content')
     <div id="app">
@@ -9,5 +9,5 @@
 @endsection
 
 @section('js')
-    <script src="{{ mix('js/app.js') }}"></script>
+    <script src="{{ asset(mix('js/app.js')) }}"></script>
 @endsection
