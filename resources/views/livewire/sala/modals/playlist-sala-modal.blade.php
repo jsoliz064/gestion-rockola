@@ -21,16 +21,21 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($sala->ListaReproduccion as $elemento)
+                                            @foreach ($listaReproduccion as $elemento)
                                                 <tr>
                                                     <td>{{ $elemento->Video->title }}</td>
                                                     <td>{{ $elemento->Mesa->nombre }}</td>
                                                     <td>{{ $elemento->created_at }}</td>
                                                     <td>
                                                         @if ($elemento->reproducido)
-                                                            <button class="btn btn-outline-success btn-sm" >Habilitar</button>
+                                                            <button wire:click="enableVideo('{{ $elemento->id }}')"
+                                                                class="btn btn-outline-success btn-sm">Habilitar</button>
+                                                        @else
+                                                            <button wire:click="disableVideo('{{ $elemento->id }}')"
+                                                                class="btn btn-outline-warning btn-sm">Deshabilitar</button>
                                                         @endif
-                                                        <button class="btn btn-outline-danger btn-sm">Quitar</button>
+                                                        <button wire:click="deleteVideo('{{ $elemento->id }}')"
+                                                            class="btn btn-outline-danger btn-sm">Quitar</button>
                                                     </td>
                                                 </tr>
                                             @endforeach
