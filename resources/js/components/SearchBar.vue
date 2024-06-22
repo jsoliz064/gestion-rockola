@@ -23,7 +23,7 @@
                     >
                         <li
                             v-for="option in filteredOptions"
-                            :key="option.title"
+                            :key="option.videoId"
                             @click="showAlert(option)"
                         >
                             <img
