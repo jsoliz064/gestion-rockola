@@ -99,6 +99,7 @@ class VideoController extends Controller
             $playlist = ListaReproduccion::select(
                 'lista_reproduccion.id',
                 'lista_reproduccion.created_at',
+                'lista_reproduccion.reproducido',
                 'videos.title',
                 'videos.thumbnails_default',
                 'videos.thumbnails_medium',

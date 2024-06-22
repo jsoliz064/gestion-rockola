@@ -17,6 +17,7 @@
                                                 <th scope="col">Cancion</th>
                                                 <th scope="col">Mesa</th>
                                                 <th scope="col">Fecha</th>
+                                                <th scope="col">Accion</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -25,6 +26,12 @@
                                                     <td>{{ $elemento->Video->title }}</td>
                                                     <td>{{ $elemento->Mesa->nombre }}</td>
                                                     <td>{{ $elemento->created_at }}</td>
+                                                    <td>
+                                                        @if ($elemento->reproducido)
+                                                            <button class="btn btn-outline-success btn-sm" >Habilitar</button>
+                                                        @endif
+                                                        <button class="btn btn-outline-danger btn-sm">Quitar</button>
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
