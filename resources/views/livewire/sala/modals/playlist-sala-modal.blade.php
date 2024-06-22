@@ -35,7 +35,7 @@
                                                                 class="btn btn-outline-warning btn-sm">Deshabilitar</button>
                                                         @endif
                                                         <button wire:click="deleteVideo('{{ $elemento->id }}')"
-                                                            class="btn btn-outline-danger btn-sm">Quitar</button>
+                                                            class="btn btn-outline-danger btn-sm my-1">Quitar</button>
                                                     </td>
                                                 </tr>
                                             @endforeach
