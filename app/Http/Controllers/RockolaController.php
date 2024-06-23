@@ -26,14 +26,16 @@ class RockolaController extends Controller
             }
 
             if ($pedido->invitacion_url) {
-                return view('common.abort');
+                $jwt = $pedido->token;
+                return redirect()->route('rockola.mesa.search', $jwt);
             }
 
             $jwt = $this->encodeJWT($pedido->toArray());
             $url = config('app.MY_HOST');
             $invitacion_url = "{$url}/rockola/mesa/search/{$jwt}";
             $pedido->update([
-                'invitacion_url' => $invitacion_url
+                'invitacion_url' => $invitacion_url,
+                'token' => $jwt
             ]);
             return redirect()->route('rockola.mesa.search', $jwt);
         } catch (\Throwable $th) {
@@ -48,6 +50,11 @@ class RockolaController extends Controller
             $pedido = Pedido::find($pedidoArray->id);
             if ($pedido->terminado) {
                 return view('common.abort');
+            }
+
+            $sala = $pedido->Sala;
+            if ($sala->estado == false) {
+                return view('cruds.rockola.salaDisable');
             }
             return view('cruds.rockola.search', compact('token'));
         } catch (\Throwable $th) {
