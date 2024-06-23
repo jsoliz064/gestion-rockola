@@ -42,6 +42,11 @@ class AuthMiddleware
                 throw new Exception("Pedido de canciones finalizado", 401);
             }
 
+            $sala = $pedido->Sala;
+            if ($sala->estado == false) {
+                throw new Exception("Rockola Pausada", 401);
+            }
+
             $request['pedido'] = $pedido;
             return $next($request);
         } catch (\Throwable $th) {
