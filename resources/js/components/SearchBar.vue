@@ -128,31 +128,33 @@ export default {
             this.query = option.title;
             this.filteredOptions = [];
         },
-        showAlert(option) {
-            Swal.fire({
-                title: "¿Estás seguro de agregar esta canción?",
-                html: `
-                    <div class="custom-imgSong">
-                    <img src="${option.thumbnails_medium}" alt="Thumbnail" class="custom-thumbnail">
-                    <p class="custom-name">${option.title}</p>
-                    </div>
-                `,
-                showCancelButton: true,
-                cancelButtonText: "No",
-                confirmButtonText: "Sí",
-                confirmButtonColor: "#008000",
-                cancelButtonColor: "#d33",
-                customClass: {
-                    title: "custom-title",
-                },
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    this.confirmAction(option);
-                } else {
-                    this.cancelAction();
-                }
-            });
+       showAlert(option) {
+    Swal.fire({
+        title: "¿Estás seguro de agregar esta canción?",
+        html: `
+            <div>
+                <img src="${option.thumbnails_medium}" alt="Thumbnail" class="custom-thumbnail">
+                <p class="custom-name">${option.title}</p>
+            </div>
+        `,
+        footer: '<b>Por cada canción agregada se cobrará 1bs y se acumulará a la cuenta de tu mesa</b>',
+        showCancelButton: true,
+        cancelButtonText: "No",
+        confirmButtonText: "Sí",
+        confirmButtonColor: "#008000",
+        cancelButtonColor: "#d33",
+        customClass: {
+            title: "custom-title",
         },
+    }).then((result) => {
+        if (result.isConfirmed) {
+            this.confirmAction(option);
+        } else {
+            this.cancelAction();
+        }
+    });
+}
+,
         async confirmAction(option) {
             //console.log("Id:", option.videoId);
             try {
@@ -250,10 +252,6 @@ body {
 
 .options-list li.no-border {
     border-bottom: none;
-}
-
-.options-list li:hover {
-    background: #f0f0f0;
 }
 
 .img-thumbnail {
