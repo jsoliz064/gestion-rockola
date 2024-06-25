@@ -5276,7 +5276,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             case 4:
               newVideos = _context2.sent;
               (_this3$options = _this3.options).push.apply(_this3$options, _toConsumableArray(newVideos));
-              _this3.filterOptions();
+              _this3.filteredOptions = newVideos;
               _context2.next = 12;
               break;
             case 9:
@@ -10390,7 +10390,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.i(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_public_css_custom_css__WEBPACK_IMPORTED_MODULE_1__["default"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nbody[data-v-6849e9f0] {\n    background-color: #eee;\n    font-family: \"Poppins\", sans-serif;\n    font-weight: 300;\n}\n.search[data-v-6849e9f0] {\n    display: flex;\n    box-shadow: 0 0 40px rgba(51, 51, 51, 0.1);\n    position: relative;\n}\n.search input[data-v-6849e9f0] {\n    height: 10vh;\n    border: 2px solid #d6d4d4;\n    flex: 1;\n}\n.search input[data-v-6849e9f0]:focus {\n    box-shadow: none;\n    border: 2px solid blue;\n}\n.search .fa-search[data-v-6849e9f0] {\n    position: absolute;\n    top: 20px;\n    left: 16px;\n}\n.search button[data-v-6849e9f0] {\n    background: blue;\n}\n.options-list[data-v-6849e9f0] {\n    position: absolute;\n    z-index: 1000;\n    list-style-type: none;\n    padding: 0;\n    margin: 0;\n    /* Removemos el margen superior */\n    background: white;\n    box-shadow: 0 0 40px rgba(51, 51, 51, 0.1);\n    border: 2px solid #d6d4d4;\n    overflow-y: auto;\n    border-radius: 10px;\n    max-height: 70vh;\n}\n.options-list li[data-v-6849e9f0] {\n    padding: 10px;\n    cursor: pointer;\n    border-bottom: 1px solid #d6d4d4;\n}\n.options-list li.no-border[data-v-6849e9f0] {\n    border-bottom: none;\n}\n.img-thumbnail[data-v-6849e9f0] {\n    margin-right: 10px;\n    max-width: 100px;\n    max-height: 56px;\n}\n.search-more[data-v-6849e9f0] {\n    display: flex;\n    justify-content: center;\n    background-color: #676767;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nbody[data-v-6849e9f0] {\r\n    background-color: #eee;\r\n    font-family: \"Poppins\", sans-serif;\r\n    font-weight: 300;\n}\n.search[data-v-6849e9f0] {\r\n    display: flex;\r\n    box-shadow: 0 0 40px rgba(51, 51, 51, 0.1);\r\n    position: relative;\n}\n.search input[data-v-6849e9f0] {\r\n    height: 10vh;\r\n    border: 2px solid #d6d4d4;\r\n    flex: 1;\n}\n.search input[data-v-6849e9f0]:focus {\r\n    box-shadow: none;\r\n    border: 2px solid blue;\n}\n.search .fa-search[data-v-6849e9f0] {\r\n    position: absolute;\r\n    top: 20px;\r\n    left: 16px;\n}\n.search button[data-v-6849e9f0] {\r\n    background: blue;\n}\n.options-list[data-v-6849e9f0] {\r\n    position: absolute;\r\n    z-index: 1000;\r\n    list-style-type: none;\r\n    padding: 0;\r\n    margin: 0;\r\n    /* Removemos el margen superior */\r\n    background: white;\r\n    box-shadow: 0 0 40px rgba(51, 51, 51, 0.1);\r\n    border: 2px solid #d6d4d4;\r\n    overflow-y: auto;\r\n    border-radius: 10px;\r\n    max-height: 70vh;\n}\n.options-list li[data-v-6849e9f0] {\r\n    padding: 10px;\r\n    cursor: pointer;\r\n    border-bottom: 1px solid #d6d4d4;\n}\n.options-list li.no-border[data-v-6849e9f0] {\r\n    border-bottom: none;\n}\n.img-thumbnail[data-v-6849e9f0] {\r\n    margin-right: 10px;\r\n    max-width: 100px;\r\n    max-height: 56px;\n}\n.search-more[data-v-6849e9f0] {\r\n    display: flex;\r\n    justify-content: center;\r\n    background-color: #676767;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -10414,7 +10414,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.video-list[data-v-6e07a95e] {\n  max-height: 70vh;\n  overflow-y: auto;\n}\n.video-index[data-v-6e07a95e] {\n  margin-right: 10px;\n  font-weight: bold;\n}\n.img-thumbnail[data-v-6e07a95e] {\n  margin-right: 10px;\n  max-width: 120px;\n  max-height: 56px;\n}\n.list-group-item[data-v-6e07a95e] {\n  border-radius: 10px;\n}\n.custom-first-item[data-v-6e07a95e] {\n  background-color: #d0e7ff;\n  border: 2px solid #007bff;\n  font-weight: bold;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.video-list[data-v-6e07a95e] {\r\n  max-height: 70vh;\r\n  overflow-y: auto;\n}\n.video-index[data-v-6e07a95e] {\r\n  margin-right: 10px;\r\n  font-weight: bold;\n}\n.img-thumbnail[data-v-6e07a95e] {\r\n  margin-right: 10px;\r\n  max-width: 120px;\r\n  max-height: 56px;\n}\n.list-group-item[data-v-6e07a95e] {\r\n  border-radius: 10px;\n}\n.custom-first-item[data-v-6e07a95e] {\r\n  background-color: #d0e7ff;\r\n  border: 2px solid #007bff;\r\n  font-weight: bold;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -10438,7 +10438,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.modal-overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  z-index: 1050; /* Asegura que el modal esté sobre otros elementos */\n}\n.modal-container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  background-color: white;\n  border-radius: 8px;\n  padding: 20px;\n  width: 60%;\n  height: 20%;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.modal-overlay {\r\n  position: fixed;\r\n  top: 0;\r\n  left: 0;\r\n  width: 100%;\r\n  height: 100%;\r\n  background-color: rgba(0, 0, 0, 0.5);\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  z-index: 1050; /* Asegura que el modal esté sobre otros elementos */\n}\n.modal-container {\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  background-color: white;\r\n  border-radius: 8px;\r\n  padding: 20px;\r\n  width: 60%;\r\n  height: 20%;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -10462,7 +10462,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".custom-thumbnail {\n    width: 90%;\n    height: 85%;\n    border-radius: 8px;\n  }\n  \n  .custom-title {\n    font-weight: bold;\n    color: #333;\n    text-align: center;\n  }\n  \n  ", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".custom-thumbnail {\r\n    width: 90%;\r\n    height: 85%;\r\n    border-radius: 8px;\r\n  }\r\n  \r\n  .custom-title {\r\n    font-weight: bold;\r\n    color: #333;\r\n    text-align: center;\r\n  }\r\n  \r\n  ", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

@@ -170,7 +170,7 @@ export default {
             try {
                 const newVideos = await Service.searchVideos(this.query);
                 this.options.push(...newVideos);
-                this.filterOptions();
+                this.filteredOptions = newVideos;
             } catch (error) {
                 this.showToast();
             } finally {
