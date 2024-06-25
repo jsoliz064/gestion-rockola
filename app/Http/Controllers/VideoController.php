@@ -38,7 +38,7 @@ class VideoController extends Controller
                     'part' => 'snippet',
                     'q' => $query,
                     'key' => $apiKey,
-                    'maxResults' => 10,
+                    'maxResults' => 15,
                     'type' => 'video',
                     'videoCategoryId' => '10', // Categoría de música
                 ]
