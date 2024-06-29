@@ -76,7 +76,10 @@ const deletePlaylistVideo = async (id) => {
             return true;
         }
     } catch (error) {
-        const message = error.response.data || error.message;
+        let message = error.message;
+        if (error.response) {
+            message = error.response.data;
+        }
         console.error("delete video error", message);
         return false;
     }
