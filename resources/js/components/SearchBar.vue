@@ -1,64 +1,38 @@
 <template>
     <div class="container" style="position: relative">
-        <div
-            class="row height d-flex justify-content-center align-items-center"
-        >
+        <div class="row height d-flex justify-content-center align-items-center">
             <div class="col-md-8">
                 <div class="search">
-                    <input
-                        type="text"
-                        class="form-control"
-                        placeholder="Ingrese el nombre de la canción o artista"
-                        v-model="query"
-                        @input="filterOptions"
-                        ref="searchInput"
-                    />
-                    <ul
-                        v-if="query"
-                        class="options-list"
-                        :style="{
+                    <input type="text" class="form-control" placeholder="Ingrese el nombre de la canción o artista"
+                        v-model="query" @input="filterOptions" ref="searchInput" />
+                    <ul v-if="query" class="options-list" :style="{
                             width: inputWidth + 'px',
                             top: inputHeight + 'px',
-                        }"
-                    >
-                        <li
-                            v-for="option in filteredOptions"
-                            :key="option.videoId"
-                            @click="showAlert(option)"
-                        >
-                            <img
-                                :src="option.thumbnails_default"
-                                alt="Video Thumbnail"
-                                class="img-thumbnail mr-3"
-                            />
-                            {{ option.title }}
-                        </li>
+                        }">
                         <div class="search-more">
-                            <li
-                                style="width: 100%; text-align: center"
-                                @click="searchMore"
-                            >
+                            <li style="width: 100%; text-align: center" @click="searchMore">
                                 <label style="color: white">
                                     Buscar más resultados de:
                                     <b style="font-size: 1rem">{{ query }}</b>
                                 </label>
                             </li>
                         </div>
+                        <li v-for="option in filteredOptions" :key="option.videoId" @click="showAlert(option)">
+                            <img :src="option.thumbnails_default" alt="Video Thumbnail" class="img-thumbnail mr-3" />
+                            {{ option.title }}
+                        </li>
+
                     </ul>
                 </div>
             </div>
             <Modal title="Agregando cancion" ref="modal">
-                <div
-                    style="
+                <div style="
                         display: flex;
                         flex-direction: column;
                         align-items: center;
-                    "
-                >
+                    ">
                     <div class="spinner-border" role="status"></div>
-                    <span style="font-weight: bold; color: black"
-                        >Espere un momento por favor...</span
-                    >
+                    <span style="font-weight: bold; color: black">Espere un momento por favor...</span>
                 </div>
             </Modal>
         </div>
@@ -128,33 +102,33 @@ export default {
             this.query = option.title;
             this.filteredOptions = [];
         },
-       showAlert(option) {
-    Swal.fire({
-        title: "¿Estás seguro de agregar esta canción?",
-        html: `
+        showAlert(option) {
+            Swal.fire({
+                title: "¿Estás seguro de agregar esta canción?",
+                html: `
             <div>
                 <img src="${option.thumbnails_medium}" alt="Thumbnail" class="custom-thumbnail">
                 <p class="custom-name">${option.title}</p>
             </div>
         `,
-        footer: '<b>Por cada canción agregada se cobrará 1bs y se acumulará a la cuenta de tu mesa</b>',
-        showCancelButton: true,
-        cancelButtonText: "No",
-        confirmButtonText: "Sí",
-        confirmButtonColor: "#008000",
-        cancelButtonColor: "#d33",
-        customClass: {
-            title: "custom-title",
-        },
-    }).then((result) => {
-        if (result.isConfirmed) {
-            this.confirmAction(option);
-        } else {
-            this.cancelAction();
+                footer: '<b>Por cada canción agregada se cobrará 1bs y se acumulará a la cuenta de tu mesa</b>',
+                showCancelButton: true,
+                cancelButtonText: "No",
+                confirmButtonText: "Sí",
+                confirmButtonColor: "#008000",
+                cancelButtonColor: "#d33",
+                customClass: {
+                    title: "custom-title",
+                },
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.confirmAction(option);
+                } else {
+                    this.cancelAction();
+                }
+            });
         }
-    });
-}
-,
+        ,
         async confirmAction(option) {
             //console.log("Id:", option.videoId);
             try {
@@ -263,6 +237,6 @@ body {
 .search-more {
     display: flex;
     justify-content: center;
-    background-color: #676767;
+    background-color: #cc2f2f;
 }
 </style>
